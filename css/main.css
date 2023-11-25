@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+
+header{
+    height: 50px;
+    background-color: #EAE3CE;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav{
+    display: flex;
+}
+
+.nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    color: #000;
+    width: 200px;
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-button:hover{
+    background-color: #DBD2B9;
+}
