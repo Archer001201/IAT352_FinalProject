@@ -11,6 +11,8 @@ if ($db->connect_errno) {
     exit();
 }
 
+echo "<p>s</p>";
+
 echo "<h1>Characters</h1>";
 
 echo "<div>";
