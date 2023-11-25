@@ -3,7 +3,7 @@
 调用fetchData函数以监听Gallery页面的下拉菜单输入
  */
 $(document).ready(function() {
-    fetchData("rarity");
+    fetchData("characterRarity");
     fetchData("region");
     fetchData("elementType");
 

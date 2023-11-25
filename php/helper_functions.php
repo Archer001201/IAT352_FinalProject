@@ -28,7 +28,7 @@ function showInfoCard($table, $name, $image){
  */
 function updateSession(){
     session_start();
-    if (isset($_GET["rarity"])) $_SESSION['rarity'] = $_GET['rarity'];
+    if (isset($_GET["characterRarity"])) $_SESSION['characterRarity'] = $_GET['characterRarity'];
     if (isset($_GET["region"])) $_SESSION['region'] = $_GET['region'];
     if (isset($_GET["elementType"])) $_SESSION['elementType'] = $_GET['elementType'];
 
@@ -47,15 +47,15 @@ function showInfoCards($db, $table){
 
     if ($table == "weapons"){
         if (isset($_SESSION['weaponRarity'])) {
-            $rarity = $db->real_escape_string($_SESSION['weaponRarity']);
-            if ($rarity != "All") $conditions[] = "weaponRarity = '$rarity'";
+            $weaponRarity = $db->real_escape_string($_SESSION['weaponRarity']);
+            if ($weaponRarity != "All") $conditions[] = "weaponRarity = '$weaponRarity'";
         }
     }
 
     if ($table == "characters") {
-        if (isset($_SESSION['rarity'])) {
-            $rarity = $db->real_escape_string($_SESSION['rarity']);
-            if ($rarity != "All") $conditions[] = "rarity = '$rarity'";
+        if (isset($_SESSION['characterRarity'])) {
+            $characterRarity = $db->real_escape_string($_SESSION['characterRarity']);
+            if ($characterRarity != "All") $conditions[] = "characterRarity = '$characterRarity'";
         }
         if (isset($_SESSION['region'])) {
             $region = $db->real_escape_string($_SESSION['region']);

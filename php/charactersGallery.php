@@ -28,7 +28,7 @@ echo "<h1>Characters</h1>";
 
 updateSession();
 formStart('charactersGallery.php');
-showDropdown("rarity", "Rarity", ["All", "4-star", "5-star"]);
+showDropdown("characterRarity", "Rarity", ["All", "4-star", "5-star"]);
 showDropdown("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 showDropdown("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cyro"]);
 showDropdown("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);
