@@ -1,43 +1,27 @@
+/*
+当当前页面的DOM结构加载完成之后，执行此函数
+调用fetchData函数以监听Gallery页面的下拉菜单输入
+ */
 $(document).ready(function() {
-    // fetchData("../php/charactersGallery.php", "rarity");
-    // fetchData("../php/charactersGallery.php", "region");
-    // fetchData("../php/charactersGallery.php", "elementType");
-    //
-    // fetchData("../php/weaponsGallery.php", "rarity");
-
     fetchData("rarity");
     fetchData("region");
-    // fetchData("elementType");
+    fetchData("elementType");
+
+    fetchData("weaponRarity");
 });
 
-// function fetchData(myUrl, keyName){
-//     let inputElement = '#' + keyName;
-//     $(inputElement).on('change', function (){
-//         let result = $(this).val();
-//
-//         $.ajax({
-//             url: myUrl,
-//             type: 'GET',
-//             data: {[keyName]: result},
-//             success: function (response){
-//                 $('body').html(response)
-//             },
-//             error: function(xhr, status, error) {
-//                 console.error(error);
-//             }
-//         })
-//     });
-// }
-
+/*
+使用ajax监听下拉菜单选项并实时更新页面显示内容
+fetchData函数会自动获取当前的php页面是charactersGallery还是weaponsGallery，所以该函数只能用于Gallery页面的数据查询和筛选
+keyName -> jquery和ajax需要获取和更新的元素
+ */
 function fetchData(keyName) {
     let inputElement = '#' + keyName;
     $(inputElement).on('change', function (){
         let result = $(this).val();
 
-        // 获取当前页面的完整 URL
         let currentUrl = window.location.href;
 
-        // 基于 URL 决定 AJAX 请求的目标地址
         let myUrl;
         if (currentUrl.includes("charactersGallery.php")) {
             myUrl = "../php/charactersGallery.php";

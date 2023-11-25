@@ -34,7 +34,7 @@ showDropdown("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "D
 showDropdown("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);
 formEnd();
 
-showInfoCards("characters", $db, "characterCardContainer");
+showInfoCards($db, "characters");
 
 $db->close();
 ?>
