@@ -4,6 +4,8 @@
     <link href="../css/normalize.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/gallery.css" rel="stylesheet">
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script src="../js/DataFilter.js"></script>
 </head>
 <body>
 
@@ -23,9 +25,16 @@ if ($db->connect_errno) {
 }
 
 echo "<h1>Characters</h1>";
-echo "<div class='cardContainer'>";
-showInfoCards("characters", $db);
-echo "</div>";
+
+updateSession();
+formStart('charactersGallery.php');
+showDropdown("rarity", "Rarity", ["All", "4-star", "5-star"]);
+showDropdown("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
+showDropdown("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cyro"]);
+showDropdown("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);
+formEnd();
+
+showInfoCards("characters", $db, "characterCardContainer");
 
 $db->close();
 ?>

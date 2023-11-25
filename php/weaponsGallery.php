@@ -4,6 +4,8 @@
     <link href="../css/normalize.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/gallery.css" rel="stylesheet">
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script src="../js/DataFilter.js"></script>
 </head>
 <body>
 
@@ -23,9 +25,14 @@ if ($db->connect_errno) {
 }
 
 echo "<h1>Weapons</h1>";
-echo "<div class='cardContainer'>";
-showInfoCards("weapons", $db);
-echo "</div>";
+//echo "<div class='cardContainer'>";
+updateSession();
+formStart('weaponsGallery.php');
+showDropdown("rarity", "Rarity", ["All", "3-star", "4-star", "5-star"]);
+showDropdown("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
+formEnd();
+showInfoCards("weapons", $db, "weaponCardContainer");
+//echo "</div>";
 
 $db->close();
 ?>
