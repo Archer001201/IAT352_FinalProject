@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2023 at 08:34 PM
+-- Generation Time: Nov 25, 2023 at 05:36 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,7 +56,7 @@ CREATE TABLE `characters` (
   `name` varchar(50) NOT NULL,
   `elementType` varchar(20) NOT NULL,
   `region` varchar(20) NOT NULL,
-  `characterRarity` varchar(20) NOT NULL,
+  `rarity` varchar(20) NOT NULL,
   `weaponTypeID` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL
@@ -66,7 +66,7 @@ CREATE TABLE `characters` (
 -- Dumping data for table `characters`
 --
 
-INSERT INTO `characters` (`characterID`, `name`, `elementType`, `region`, `characterRarity`, `weaponTypeID`, `image`, `description`) VALUES
+INSERT INTO `characters` (`characterID`, `name`, `elementType`, `region`, `rarity`, `weaponTypeID`, `image`, `description`) VALUES
 (1, 'Nahida', 'Dendro', 'Sumeru', '5-star', 3, 'Nahida.png', NULL),
 (2, 'Furina', 'Hydro', 'Fontaine', '5-star', 1, 'Furina.png', NULL),
 (3, 'Jean', 'Anemo', 'Mondstadt', '5-star', 1, 'Jean.png', NULL),
