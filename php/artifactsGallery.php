@@ -23,9 +23,11 @@ if ($db->connect_errno) {
     exit();
 }
 
+echo "<div class='mainContainer'>";
 echo "<h1>Artifacts</h1>";
 showInfoCards($db, "artifacts");
 
+echo "</div>";
 $db->close();
 ?>
 

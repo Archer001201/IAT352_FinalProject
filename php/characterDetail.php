@@ -30,9 +30,10 @@ else {
 $table = "characters";
 $res = queryID($db,$table, $id);
 
+echo "<div class='mainContainer'>";
 showBasicCharacterInfo($res);
 
-
+echo "</div>";
 
 $db->close();
 ?>

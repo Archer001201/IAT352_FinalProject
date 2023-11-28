@@ -25,6 +25,7 @@ if ($db->connect_errno) {
     exit();
 }
 
+echo "<div class='mainContainer'>";
 echo "<h1>Characters</h1>";
 
 updateSession();
@@ -37,6 +38,7 @@ formEnd();
 
 showInfoCards($db, "characters");
 
+echo "</div>";
 $db->close();
 ?>
 
