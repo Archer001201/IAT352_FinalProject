@@ -9,7 +9,7 @@
 </head>
 <body>
 <?php
-include('helper_functions.php');
+include('loginHelperFunctions.php');
 
 //require_SSL();
 $dbserver = "localhost";

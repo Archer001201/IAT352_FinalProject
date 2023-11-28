@@ -1,21 +1,21 @@
 <?php
-
-//session_start for store user account infor for detect signin or signout
-session_start();
-
 /*
  * 显示单个info card的<a>，点击之后进入对应的detail页面，在showInfoCard中调用
  * $table -> 数据库中table的名字 ($name和$image通过$table获取)
  * $name -> info card显示的名字
  * $image -> info card图片的url
  */
-function showInfoCard($table, $name, $image){
+function showInfoCard($table, $name, $image, $id){
     $resRoot = null;
-    if ($table == "characters") $resRoot = "../res/CharacterImages/";
+    $hrefStr = "#";
+    if ($table == "characters"){
+        $resRoot = "../res/CharacterImages/";
+        $hrefStr = "characterDetail.php?id=" . $id;
+    }
     else if ($table == "weapons") $resRoot = "../res/WeaponImages/";
     else if ($table == "artifacts") $resRoot = "../res/ArtifactImages/";
 
-    echo "<a class='card' href='#'>";
+    echo "<a class='card' href=$hrefStr>";
     if ($resRoot == null){
         echo $table . " is invalid";
         return;
@@ -47,44 +47,69 @@ function updateSession(){
 function showInfoCards($db, $table){
     $query_str = 'SELECT * FROM ' . $table;
     $conditions = array();
+    $params = array();
+    $types = '';
 
     if ($table == "weapons"){
-        if (isset($_SESSION['weaponRarity'])) {
-            $weaponRarity = $db->real_escape_string($_SESSION['weaponRarity']);
-            if ($weaponRarity != "All") $conditions[] = "weaponRarity = '$weaponRarity'";
+        if (isset($_SESSION['weaponRarity']) && $_SESSION['weaponRarity'] != "All") {
+            $conditions[] = "weaponRarity = ?";
+            $params[] = $_SESSION['weaponRarity'];
+            $types .= 's';
         }
     }
 
     if ($table == "characters") {
-        if (isset($_SESSION['characterRarity'])) {
-            $characterRarity = $db->real_escape_string($_SESSION['characterRarity']);
-            if ($characterRarity != "All") $conditions[] = "characterRarity = '$characterRarity'";
+        if (isset($_SESSION['characterRarity']) && $_SESSION['characterRarity'] != "All") {
+            $conditions[] = "characterRarity = ?";
+            $params[] = $_SESSION['characterRarity'];
+            $types .= 's';
         }
-        if (isset($_SESSION['region'])) {
-            $region = $db->real_escape_string($_SESSION['region']);
-            if ($region != "All") $conditions[] = "region = '$region'";
+        if (isset($_SESSION['region']) && $_SESSION['region'] != "All") {
+            $conditions[] = "region = ?";
+            $params[] = $_SESSION['region'];
+            $types .= 's';
         }
-        if (isset($_SESSION['elementType'])) {
-            $elementType = $db->real_escape_string($_SESSION['elementType']);
-            if ($elementType != "All") $conditions[] = "elementType = '$elementType'";
+        if (isset($_SESSION['elementType']) && $_SESSION['elementType'] != "All") {
+            $conditions[] = "elementType = ?";
+            $params[] = $_SESSION['elementType'];
+            $types .= 's';
         }
     }
 
-    if (count($conditions) > 0) $query_str .= " WHERE " . implode(" AND ", $conditions);
-    $res = $db->query($query_str);
+    if (count($conditions) > 0) {
+        $query_str .= " WHERE " . implode(" AND ", $conditions);
+    }
 
+    $stmt = $db->prepare($query_str);
+    if ($stmt === false) {
+        echo "Prepare error: " . $db->error;
+        exit();
+    }
+
+    if ($types != '') {
+        $stmt->bind_param($types, ...$params);
+    }
+
+    if (!$stmt->execute()) {
+        echo "Execute error: " . $stmt->error;
+        exit();
+    }
+
+    $res = $stmt->get_result();
     echo "<div class='cardContainer' id='cardContainer'>";
     if ($res === false) {
         echo "Query error: " . $db->error;
         exit();
     }
+
     while ($row = $res->fetch_assoc()) {
-        showInfoCard($table, $row['name'], $row['image']);
+        showInfoCard($table, $row['name'], $row['image'], $row['id']);
     }
     echo "</div>";
 
     $res->free_result();
 }
+
 
 /*
  * 生成下拉菜单选项
@@ -114,41 +139,4 @@ function formStart($filePath){
  */
 function formEnd(){
     echo "</form>";
-}
-
-//change https and http when user in signin and register page.
-function no_SSL() {
-	if(isset($_SERVER['HTTPS']) &&  $_SERVER['HTTPS']== "on") {
-		header("Location: http://" . $_SERVER['HTTP_HOST'] .
-			$_SERVER['REQUEST_URI']);
-		exit();
-	}
-}
-function require_SSL() {
-	if($_SERVER['HTTPS'] != "on") {
-		header("Location: https://" . $_SERVER['HTTP_HOST'] .
-			$_SERVER['REQUEST_URI']);
-		exit();
-	}
-}
-
-function redirect_to($url) {
-    header('Location: ' . $url);
-    exit;
-}
-
-if(!empty($_SESSION['valid_user']))  {
-    $current_user = $_SESSION['valid_user'];
-    //$query = "SELECT * from members WHERE email = '$current_user'";
-    //$result = mysqli_query($connection, $query);
-    //while($subject = mysqli_fetch_assoc($result)) {
-    //    $s_id = $subject['s_id'];
-    //    $fname = $subject['firstname'];
-    //    $lname = $subject['lastname'];
-    //    $faculty = $subject['faculty'];
-    //}
-}
-
-function is_logged_in() {
-	return isset($_SESSION['valid_user']);
 }

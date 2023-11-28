@@ -1,5 +1,5 @@
 <?php
-    include('helper_functions.php');
+    include('loginHelperFunctions.php');
     session_start();
     session_destroy();
     $message = "Signed out";

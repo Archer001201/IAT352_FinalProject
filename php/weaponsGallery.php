@@ -10,7 +10,8 @@
 <body>
 
 <?php
-require ("helper_functions.php");
+require("loginHelperFunctions.php");
+require("galleryHelperFunctions.php");
 require ("header.php");
 
 $dbserver = "localhost";
