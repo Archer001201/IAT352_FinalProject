@@ -127,6 +127,21 @@ function showDropdown($label, $displayName, $options){
     echo "</select></label>";
 }
 
+function showRadioButton($label, $displayName, $options){
+    echo "<div class='radioButtons'><h3>" . $displayName ."</h3>";
+    $index = 0;
+    foreach ($options as $opt){
+        $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt) ? 'checked' : '';
+        $id = $label . $index;
+        echo "<label for='" . $id . "'>";
+        echo "<input type='radio' id='" . $id . "' name='" . $label . "' value='" . $opt . "' " . $selected . ">";
+        echo $opt . "</label>";
+        $index++;
+    }
+    echo "</div>";
+}
+
+
 /*
  * form开始，把form提交的php路径作为参数传递给formStart
  */

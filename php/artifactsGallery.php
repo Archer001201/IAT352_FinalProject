@@ -24,7 +24,7 @@ if ($db->connect_errno) {
 }
 
 echo "<div class='mainContainer'>";
-echo "<h1>Artifacts</h1>";
+echo "<h1 class='pageTitle'>Artifacts</h1>";
 showInfoCards($db, "artifacts");
 
 echo "</div>";

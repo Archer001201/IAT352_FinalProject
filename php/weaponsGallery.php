@@ -26,11 +26,11 @@ if ($db->connect_errno) {
 }
 
 echo "<div class='mainContainer'>";
-echo "<h1>Weapons</h1>";
+echo "<h1 class='pageTitle'>Weapons</h1>";
 updateSession();
 formStart('weaponsGallery.php');
-showDropdown("weaponRarity", "Rarity", ["All", "3-star", "4-star", "5-star"]);
-showDropdown("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
+showRadioButton("weaponRarity", "Rarity", ["All", "3-star", "4-star", "5-star"]);
+showRadioButton("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
 showInfoCards($db, "weapons");
 echo "</div>";

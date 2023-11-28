@@ -26,14 +26,13 @@ if ($db->connect_errno) {
 }
 
 echo "<div class='mainContainer'>";
-echo "<h1>Characters</h1>";
-
+echo "<h1 class='pageTitle'>Characters</h1>";
 updateSession();
 formStart('charactersGallery.php');
-showDropdown("characterRarity", "Rarity", ["All", "4-star", "5-star"]);
-showDropdown("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
-showDropdown("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cyro"]);
-showDropdown("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);
+showRadioButton("characterRarity", "Rarity", ["All", "4-star", "5-star"]);
+showRadioButton("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cyro"]);
+showRadioButton("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);
+showRadioButton("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
 
 showInfoCards($db, "characters");
