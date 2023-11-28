@@ -6,8 +6,10 @@ $(document).ready(function() {
     fetchData("characterRarity");
     fetchData("region");
     fetchData("elementType");
+    fetchData("character_weaponType");
 
     fetchData("weaponRarity");
+    fetchData("weapon_weaponType");
 });
 
 /*

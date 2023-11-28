@@ -30,7 +30,7 @@ echo "<h1 class='pageTitle'>Weapons</h1>";
 updateSession();
 formStart('weaponsGallery.php');
 showRadioButton("weaponRarity", "Rarity", ["All", "3-star", "4-star", "5-star"]);
-showRadioButton("weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
+showRadioButton("weapon_weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
 showInfoCards($db, "weapons");
 echo "</div>";

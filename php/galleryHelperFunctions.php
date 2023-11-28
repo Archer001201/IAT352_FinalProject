@@ -34,8 +34,10 @@ function updateSession(){
     if (isset($_GET["characterRarity"])) $_SESSION['characterRarity'] = $_GET['characterRarity'];
     if (isset($_GET["region"])) $_SESSION['region'] = $_GET['region'];
     if (isset($_GET["elementType"])) $_SESSION['elementType'] = $_GET['elementType'];
+    if (isset($_GET["character_weaponType"])) $_SESSION['character_weaponType'] = $_GET['character_weaponType'];
 
     if (isset($_GET["weaponRarity"])) $_SESSION['weaponRarity'] = $_GET['weaponRarity'];
+    if (isset($_GET["weapon_weaponType"])) $_SESSION['weapon_weaponType'] = $_GET['weapon_weaponType'];
 }
 
 /*
@@ -56,6 +58,11 @@ function showInfoCards($db, $table){
             $params[] = $_SESSION['weaponRarity'];
             $types .= 's';
         }
+        if (isset($_SESSION['weapon_weaponType']) && $_SESSION['weapon_weaponType'] != "All") {
+            $conditions[] = "weaponTypes.name = ?";
+            $params[] = $_SESSION['weapon_weaponType'];
+            $types .= 's';
+        }
     }
 
     if ($table == "characters") {
@@ -74,12 +81,21 @@ function showInfoCards($db, $table){
             $params[] = $_SESSION['elementType'];
             $types .= 's';
         }
+        if (isset($_SESSION['character_weaponType']) && $_SESSION['character_weaponType'] != "All") {
+            $conditions[] = "weaponTypes.name = ?";
+            $params[] = $_SESSION['character_weaponType'];
+            $types .= 's';
+        }
     }
 
     if (count($conditions) > 0) {
-        $query_str .= " WHERE " . implode(" AND ", $conditions);
+        if ($table == "characters")
+            $query_str .= " LEFT JOIN weaponTypes ON " . $table . ".character_weaponType = weaponTypes.id WHERE " . implode(" AND ", $conditions);
+        if ($table == "weapons")
+            $query_str .= " LEFT JOIN weaponTypes ON " . $table . ".weapon_weaponType = weaponTypes.id WHERE " . implode(" AND ", $conditions);
     }
 
+//    echo $query_str;
     $stmt = $db->prepare($query_str);
     if ($stmt === false) {
         echo "Prepare error: " . $db->error;
