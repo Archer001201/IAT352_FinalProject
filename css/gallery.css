@@ -22,14 +22,14 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 2rem;
-    width: 80%;
+    width: 70%;
     margin: auto;
-    /*border: 1px solid black;*/
+    border: 1px solid black;
 }
 
 form{
     position: fixed;
-    /*border: 1px solid red;*/
+    border: 1px solid red;
     padding: 0.5rem;
 }
 

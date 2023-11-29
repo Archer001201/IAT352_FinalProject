@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2023 at 05:36 AM
+-- Generation Time: Nov 29, 2023 at 09:11 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `artifacts` (
-  `artifactID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL
@@ -38,7 +38,7 @@ CREATE TABLE `artifacts` (
 -- Dumping data for table `artifacts`
 --
 
-INSERT INTO `artifacts` (`artifactID`, `name`, `image`, `description`) VALUES
+INSERT INTO `artifacts` (`id`, `name`, `image`, `description`) VALUES
 (1, 'Maiden Beloved', 'MaidenBeloved.png', NULL),
 (2, 'Thundersoother', 'Thundersoother.png', NULL),
 (3, 'Blizzard Strayer', 'BlizzardStrayer.png', NULL),
@@ -52,12 +52,12 @@ INSERT INTO `artifacts` (`artifactID`, `name`, `image`, `description`) VALUES
 --
 
 CREATE TABLE `characters` (
-  `characterID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `elementType` varchar(20) NOT NULL,
   `region` varchar(20) NOT NULL,
-  `rarity` varchar(20) NOT NULL,
-  `weaponTypeID` int(11) DEFAULT NULL,
+  `characterRarity` varchar(20) NOT NULL,
+  `character_weaponType` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -66,7 +66,7 @@ CREATE TABLE `characters` (
 -- Dumping data for table `characters`
 --
 
-INSERT INTO `characters` (`characterID`, `name`, `elementType`, `region`, `rarity`, `weaponTypeID`, `image`, `description`) VALUES
+INSERT INTO `characters` (`id`, `name`, `elementType`, `region`, `characterRarity`, `character_weaponType`, `image`, `description`) VALUES
 (1, 'Nahida', 'Dendro', 'Sumeru', '5-star', 3, 'Nahida.png', NULL),
 (2, 'Furina', 'Hydro', 'Fontaine', '5-star', 1, 'Furina.png', NULL),
 (3, 'Jean', 'Anemo', 'Mondstadt', '5-star', 1, 'Jean.png', NULL),
@@ -87,7 +87,7 @@ INSERT INTO `characters` (`characterID`, `name`, `elementType`, `region`, `rarit
 (18, 'Lisa', 'Electro', 'Mondstadt', '4-star', 3, 'Lisa.png', NULL),
 (19, 'Bennett', 'Pyro', 'Mondstadt', '4-star', 1, 'Bennett.png', NULL),
 (20, 'Xingqiu', 'Hydro', 'Liyue', '4-star', 1, 'Xingqiu.png', NULL),
-(21, '', 'Electro', 'Inazuma', '5-star', 3, 'Miko.png', NULL),
+(21, 'Yea Miko', 'Electro', 'Inazuma', '5-star', 3, 'Miko.png', NULL),
 (22, 'Nilou', 'Hydro', 'Sumeru', '5-star', 1, 'Nilou.png', NULL),
 (23, 'Arataki Itto', 'Geo', 'Inazuma', '5-star', 2, 'AratakiItto.png', NULL),
 (24, 'Thoma', 'Pyro', 'Inazuma', '4-star', 4, 'Thoma.png', NULL),
@@ -147,6 +147,13 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`userID`, `userName`, `email`, `password`) VALUES
+(1, 'Archer001201', 'zhongchuqiao1201@gmail.com', '$2y$10$D1r.3TuYelzOe1N5voZmtuzpFDzmyJ2phsyZijbbM.Z1y/WeQ7M0.');
+
 -- --------------------------------------------------------
 
 --
@@ -165,10 +172,10 @@ CREATE TABLE `user_favorite` (
 --
 
 CREATE TABLE `weapons` (
-  `weaponID` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `weaponRarity` varchar(20) NOT NULL,
-  `weaponTypeID` int(11) DEFAULT NULL,
+  `weapon_weaponType` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -177,7 +184,7 @@ CREATE TABLE `weapons` (
 -- Dumping data for table `weapons`
 --
 
-INSERT INTO `weapons` (`weaponID`, `name`, `weaponRarity`, `weaponTypeID`, `image`, `description`) VALUES
+INSERT INTO `weapons` (`id`, `name`, `weaponRarity`, `weapon_weaponType`, `image`, `description`) VALUES
 (1, 'Harbinger of Dawn', '3-star', 1, 'HarbingerOfDawn.png', NULL),
 (2, 'Sacrificial Sword', '4-star', 1, 'SacrificialSword.png', NULL),
 (3, 'Freedom-Sword', '5-star', 1, 'FreedomSword.png', NULL),
@@ -227,15 +234,15 @@ INSERT INTO `weapons` (`weaponID`, `name`, `weaponRarity`, `weaponTypeID`, `imag
 --
 
 CREATE TABLE `weaponTypes` (
-  `weaponTypeID` int(11) NOT NULL,
-  `weaponTypeName` varchar(50) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `weaponTypes`
 --
 
-INSERT INTO `weaponTypes` (`weaponTypeID`, `weaponTypeName`) VALUES
+INSERT INTO `weaponTypes` (`id`, `name`) VALUES
 (1, 'Sword'),
 (2, 'Claymore'),
 (3, 'Catalyst'),
@@ -250,14 +257,14 @@ INSERT INTO `weaponTypes` (`weaponTypeID`, `weaponTypeName`) VALUES
 -- Indexes for table `artifacts`
 --
 ALTER TABLE `artifacts`
-  ADD PRIMARY KEY (`artifactID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `characters`
 --
 ALTER TABLE `characters`
-  ADD PRIMARY KEY (`characterID`),
-  ADD KEY `weaponTypeID` (`weaponTypeID`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `weaponTypeID` (`character_weaponType`);
 
 --
 -- Indexes for table `comments`
@@ -296,14 +303,14 @@ ALTER TABLE `user_favorite`
 -- Indexes for table `weapons`
 --
 ALTER TABLE `weapons`
-  ADD PRIMARY KEY (`weaponID`),
-  ADD KEY `weaponTypeID` (`weaponTypeID`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `weaponTypeID` (`weapon_weaponType`);
 
 --
 -- Indexes for table `weaponTypes`
 --
 ALTER TABLE `weaponTypes`
-  ADD PRIMARY KEY (`weaponTypeID`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -313,13 +320,13 @@ ALTER TABLE `weaponTypes`
 -- AUTO_INCREMENT for table `artifacts`
 --
 ALTER TABLE `artifacts`
-  MODIFY `artifactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `characterID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -337,19 +344,19 @@ ALTER TABLE `guides`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `weapons`
 --
 ALTER TABLE `weapons`
-  MODIFY `weaponID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `weaponTypes`
 --
 ALTER TABLE `weaponTypes`
-  MODIFY `weaponTypeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -359,7 +366,7 @@ ALTER TABLE `weaponTypes`
 -- Constraints for table `characters`
 --
 ALTER TABLE `characters`
-  ADD CONSTRAINT `characters_ibfk_1` FOREIGN KEY (`weaponTypeID`) REFERENCES `weaponTypes` (`weaponTypeID`);
+  ADD CONSTRAINT `characters_ibfk_1` FOREIGN KEY (`character_weaponType`) REFERENCES `weaponTypes` (`id`);
 
 --
 -- Constraints for table `comments`
@@ -372,12 +379,12 @@ ALTER TABLE `comments`
 -- Constraints for table `guides`
 --
 ALTER TABLE `guides`
-  ADD CONSTRAINT `guides_ibfk_1` FOREIGN KEY (`characterID`) REFERENCES `characters` (`characterID`),
+  ADD CONSTRAINT `guides_ibfk_1` FOREIGN KEY (`characterID`) REFERENCES `characters` (`id`),
   ADD CONSTRAINT `guides_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
-  ADD CONSTRAINT `guides_ibfk_3` FOREIGN KEY (`bestWeaponID`) REFERENCES `weapons` (`weaponID`),
-  ADD CONSTRAINT `guides_ibfk_4` FOREIGN KEY (`replacementWeaponID`) REFERENCES `weapons` (`weaponID`),
-  ADD CONSTRAINT `guides_ibfk_5` FOREIGN KEY (`artifactID_1`) REFERENCES `artifacts` (`artifactID`),
-  ADD CONSTRAINT `guides_ibfk_6` FOREIGN KEY (`artifactID_2`) REFERENCES `artifacts` (`artifactID`);
+  ADD CONSTRAINT `guides_ibfk_3` FOREIGN KEY (`bestWeaponID`) REFERENCES `weapons` (`id`),
+  ADD CONSTRAINT `guides_ibfk_4` FOREIGN KEY (`replacementWeaponID`) REFERENCES `weapons` (`id`),
+  ADD CONSTRAINT `guides_ibfk_5` FOREIGN KEY (`artifactID_1`) REFERENCES `artifacts` (`id`),
+  ADD CONSTRAINT `guides_ibfk_6` FOREIGN KEY (`artifactID_2`) REFERENCES `artifacts` (`id`);
 
 --
 -- Constraints for table `user_favorite`
@@ -390,7 +397,7 @@ ALTER TABLE `user_favorite`
 -- Constraints for table `weapons`
 --
 ALTER TABLE `weapons`
-  ADD CONSTRAINT `weapons_ibfk_1` FOREIGN KEY (`weaponTypeID`) REFERENCES `weaponTypes` (`weaponTypeID`);
+  ADD CONSTRAINT `weapons_ibfk_1` FOREIGN KEY (`weapon_weaponType`) REFERENCES `weaponTypes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
