@@ -29,9 +29,15 @@ function showRadioButton($label, $displayName, $options){
     echo "</div>";
 }
 
-function showTextBox(){
+function showTextBox($required){
     echo "<label for='title'>Title";
-    echo "<input type='text' id='title' name='title'>";
+    echo "<input type='text' id='title' name='title'" . ($required ? "required" : ""). ">";
+    echo "</label>";
+}
+
+function showTextArea($label, $displayName){
+    echo "<label for='" . $label . "'>" . $displayName;
+    echo "<textarea id='" . $label . "' name='". $label . "'></textArea>";
     echo "</label>";
 }
 
@@ -47,4 +53,8 @@ function formStart($filePath){
  */
 function formEnd(){
     echo "</form>";
+}
+
+function showSubmitButton(){
+    echo "<input type='submit' value='submit'>";
 }

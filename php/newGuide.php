@@ -39,11 +39,15 @@ $allArtifacts = queryAllFromTable($db, "artifacts");
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
 echo "<h1>New Game Guide</h1>";
-showTextBox();
+formStart("");
+showTextBox(true);
 showDropdown("bestWeapon", "Best Weapon", getAllName($allWeaponsByWeaponType));
 showDropdown("replacementWeapon", "Replacement Weapon", getAllName($allWeaponsByWeaponType));
 showDropdown("artifacts_1", "Artifacts (2pcs)", getAllName($allArtifacts));
 showDropdown("artifacts_2", "Artifacts (2pcs)", getAllName($allArtifacts));
+showTextArea("description", "Description");
+showSubmitButton();
+formEnd();
 echo "</div>";
 $db->close();
 ?>
