@@ -39,3 +39,10 @@ if(!empty($_SESSION['valid_user']))  {
 function is_logged_in() {
 	return isset($_SESSION['valid_user']);
 }
+
+function showLoginRequestMessage(){
+    if (empty($_SESSION['loginRequestPage'])) return;
+    $loginRequestPage = $_SESSION['loginRequestPage'];
+    if ($loginRequestPage == "newGuide")
+        echo "<p>Please log in to post game guides.</p>";
+}

@@ -11,3 +11,7 @@
 					?>
     </nav>
 </header>
+
+<?php
+require ("sqlHelperFunctions.php");
+require ("formHelperFunctions.php");

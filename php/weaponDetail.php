@@ -27,14 +27,11 @@ else {
     $db->close();
     exit();
 }
-$table = "characters";
+$table = "weapons";
 $res = queryPrimaryKey($db,$table, $id);
-session_start();
 
 echo "<div class='mainContainer'>";
-showBasicCharacterInfo($res);
-showAddGuideButton($id);
-
+showBasicWeaponInfo($res);
 
 echo "</div>";
 

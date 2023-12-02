@@ -3,8 +3,7 @@
     <title>Characters</title>
     <link href="../css/normalize.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
-    <link href="../css/gallery.css" rel="stylesheet">
-    <link href="../css/signin.css" rel="stylesheet">
+    <link href="../css/signIn.css" rel="stylesheet">
     
 </head>
 <body>
@@ -69,8 +68,11 @@ require('header.php');
     <input type="submit" name="submit" value="Submit">
             </form>
 	<p><a href="register.php">Not registered yet? Register here.</a></p>
+<?php
+    showLoginRequestMessage();
+?>
     </section>
-<?php 
+<?php
 	require('footer.php');
 ?>
 

@@ -1,31 +1,4 @@
 <?php
-function queryID($db, $table, $id){
-    if (!is_numeric($id)) {
-        echo "Invalid ID";
-        return null;
-    }
-
-    $stmt = $db->prepare('SELECT * FROM ' . $table . ' WHERE id = ?');
-    if ($stmt === false) {
-        echo "Prepare error: " . $db->error;
-        return null;
-    }
-
-    $stmt->bind_param('i', $id);
-    if (!$stmt->execute()) {
-        echo "Execute error: " . $stmt->error;
-        return null;
-    }
-
-    $result = $stmt->get_result();
-    if ($result === false) {
-        echo "Query error: " . $db->error;
-        return null;
-    }
-
-    return $result->fetch_assoc();
-}
-
 function showBasicCharacterInfo($res){
     echo "<div class='basicInfoContainer'>";
     echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
@@ -36,4 +9,27 @@ function showBasicCharacterInfo($res){
     echo "<p> Rarity: " . $res['characterRarity'] . "</p>";
     echo "</div>";
     echo "</div>";
+}
+
+function showBasicWeaponInfo($res){
+    echo "<div class='basicInfoContainer'>";
+    echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
+    echo "<div class='basicInfoImage'><img src='../res/WeaponImages/" . $res['image'] . "' alt='image'></div>";
+    echo "<div class='basicInfoDescription'>";
+    echo "<p> Rarity: " . $res['weaponRarity'] . "</p>";
+    echo "</div>";
+    echo "</div>";
+}
+
+function showBasicArtifactInfo($res){
+    echo "<div class='basicInfoContainer'>";
+    echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
+    echo "<div class='basicInfoImage'><img src='../res/ArtifactImages/" . $res['image'] . "' alt='image'></div>";
+    echo "<div class='basicInfoDescription'>";
+    echo "</div>";
+    echo "</div>";
+}
+
+function showAddGuideButton($characterID){
+    echo "<a href='newGuide.php?characterID=" . $characterID . "'" . ">Add New Guide</a>";
 }

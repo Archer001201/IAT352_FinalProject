@@ -27,14 +27,11 @@ else {
     $db->close();
     exit();
 }
-$table = "characters";
+$table = "artifacts";
 $res = queryPrimaryKey($db,$table, $id);
-session_start();
 
 echo "<div class='mainContainer'>";
-showBasicCharacterInfo($res);
-showAddGuideButton($id);
-
+showBasicArtifactInfo($res);
 
 echo "</div>";
 

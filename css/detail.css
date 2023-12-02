@@ -1,22 +1,21 @@
 .basicInfoContainer {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* 两列，第一列为1份大小，第二列为2份大小 */
-    grid-template-rows: auto 1fr; /* 两行，第一行大小自适应内容，第二行占据剩余空间 */
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto 1fr;
     grid-gap: 10px;
 }
 
 .basicInfoName {
-    grid-column: 1 / -1; /* 标题跨越所有列 */
-    /*background-color: #f0f0f0;*/
+    grid-column: 1 / -1;
     text-align: center;
     padding: 10px;
 }
 
 .basicInfoImage {
-    grid-row: 2 / 3; /* 图片在第二行 */
-    grid-column: 1 / 2; /* 图片在第一列 */
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
     /*background-color: lightblue;*/
-    /* 在此处添加实际图片 */
+
 }
 
 .basicInfoImage img{
@@ -24,8 +23,8 @@
 }
 
 .basicInfoDescription {
-    grid-row: 2 / 3; /* 基本信息在第二行 */
-    grid-column: 2 / 3; /* 基本信息在第二列 */
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
     background-color: lightgreen;
     padding: 10px;
 }

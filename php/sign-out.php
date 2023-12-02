@@ -4,4 +4,3 @@
     session_destroy();
     $message = "Signed out";
     redirect_to('index.php');
-?>
