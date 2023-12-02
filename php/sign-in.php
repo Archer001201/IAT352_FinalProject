@@ -32,17 +32,16 @@ if (!isset($_POST['submit'])) { // detect form submission
     $email = !empty($_POST["email"]) ? trim($_POST["email"]) : "";
     $password = !empty($_POST["password"]) ? trim($_POST["password"]) : "";
 
-    $query = "SELECT email,password from users ";
-    $query .= "WHERE email = ?";
-
+    $query = "SELECT uid, password FROM users WHERE email = ?";
 	$stmt = $db->prepare($query);
 	$stmt->bind_param('s',$email);
 	$stmt->execute();
-	$stmt->bind_result($email2,$pass2_hash);
+    $stmt->bind_result($uid, $pass2_hash);
+
 	
 
     if($stmt->fetch() && password_verify($password,$pass2_hash)) {
-        $_SESSION['valid_user'] = $email;
+        $_SESSION['valid_user'] = $uid;
         $callback_url = "index.php";
         if (isset($_SESSION['callback_url']))
         	$callback_url = $_SESSION['callback_url'];

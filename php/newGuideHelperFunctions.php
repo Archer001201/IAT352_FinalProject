@@ -14,3 +14,12 @@ function getAllName($weaponList){
     }
     return $weaponNameList;
 }
+
+function createGuideData($db){
+    $email = $_SESSION['valid_user'];
+    echo $email;
+//    if (isset($_POST['submit'])) {
+//        $email = $_SESSION['valid_user'];
+//        echo $email;
+//    }
+}

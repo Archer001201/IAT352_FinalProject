@@ -39,7 +39,7 @@ $allArtifacts = queryAllFromTable($db, "artifacts");
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
 echo "<h1>New Game Guide</h1>";
-formStart("");
+formStart("characterDetail.php");
 showTextBox(true);
 showDropdown("bestWeapon", "Best Weapon", getAllName($allWeaponsByWeaponType));
 showDropdown("replacementWeapon", "Replacement Weapon", getAllName($allWeaponsByWeaponType));
@@ -48,6 +48,9 @@ showDropdown("artifacts_2", "Artifacts (2pcs)", getAllName($allArtifacts));
 showTextArea("description", "Description");
 showSubmitButton();
 formEnd();
+
+createGuideData($db);
+
 echo "</div>";
 $db->close();
 ?>

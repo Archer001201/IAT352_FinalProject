@@ -56,5 +56,5 @@ function formEnd(){
 }
 
 function showSubmitButton(){
-    echo "<input type='submit' value='submit'>";
+    echo "<input type='submit' name='submit' value='submit'>";
 }
