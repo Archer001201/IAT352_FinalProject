@@ -28,7 +28,7 @@ if ($db->connect_errno) {
 echo "<div class='mainContainer'>";
 echo "<h1 class='pageTitle'>Characters</h1>";
 updateSession();
-formStart('charactersGallery.php');
+formStart('charactersGallery.php', "get");
 showRadioButton("characterRarity", "Rarity", ["All", "4-star", "5-star"]);
 showRadioButton("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cyro"]);
 showRadioButton("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);

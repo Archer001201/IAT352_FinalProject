@@ -25,7 +25,6 @@ if ($db->connect_errno) {
 
 if (isset($_POST['submit'])) { // detect form submission
 
-    // detect if each variable is set (fname, lname, email, password, sid, faculty)
     $name = !empty($_POST["name"]) ? trim($_POST["name"]) : "";
     $email = !empty($_POST["email"]) ? trim($_POST["email"]) : "";
     $password = !empty($_POST["password"]) ? $_POST["password"] : "";
@@ -35,7 +34,7 @@ if (isset($_POST['submit'])) { // detect form submission
         $message = "Passwords do not match.";
     }
     else if (!$name || !$email || !$password) {
-    	$message = "All fields manadatory.";
+    	$message = "All fields mandatory.";
     }
     else {
         $pw_encrypted = password_hash($password, PASSWORD_DEFAULT);

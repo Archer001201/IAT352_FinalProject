@@ -10,7 +10,7 @@ function showDropdown($label, $displayName, $options){
     echo "<select name='" . $label . "' id='" . $label . "'>";
     foreach ($options as $opt){
         $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt) ? 'selected' : '';
-        echo "<option value='" . $opt . "' " . $selected . ">" . $opt . "</option>";
+        echo "<option value='" . $opt['id'] . "' " . $selected . ">" . $opt['name'] . "</option>";
     }
     echo "</select></label>";
 }
@@ -29,9 +29,9 @@ function showRadioButton($label, $displayName, $options){
     echo "</div>";
 }
 
-function showTextBox($required){
-    echo "<label for='title'>Title";
-    echo "<input type='text' id='title' name='title'" . ($required ? "required" : ""). ">";
+function showTextBox($label, $displayName, $required){
+    echo "<label for='" . $label . "'>" . $displayName;
+    echo "<input type='text' id='" . $label . "' name='" . $label . "'" . ($required ? "required" : ""). ">";
     echo "</label>";
 }
 
@@ -44,8 +44,8 @@ function showTextArea($label, $displayName){
 /*
  * form开始，把form提交的php路径作为参数传递给formStart
  */
-function formStart($filePath){
-    echo "<form action='$filePath'>";
+function formStart($filePath, $method){
+    echo "<form action='$filePath' method='" . $method . "'>";
 }
 
 /*

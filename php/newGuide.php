@@ -16,11 +16,11 @@ require("header.php");
 session_start();
 redirect_to_if("sign-in.php", empty($_SESSION['valid_user']), "newGuide");
 
-if (empty($_GET['characterID'])){
+if (empty($_SESSION['characterID'])){
     echo "Error: Invalid characterID";
     exit();
 }
-$characterID = $_GET['characterID'];
+$characterID = $_SESSION['characterID'];
 
 $dbserver = "localhost";
 $dbuser = "root";
@@ -36,20 +36,20 @@ $character = queryPrimaryKey($db,"characters", $characterID);
 $allWeaponsByWeaponType = queryForeignKey($db,"weapons","weapon_weaponType", $character['character_weaponType']);
 $allArtifacts = queryAllFromTable($db, "artifacts");
 
+createGuideData($db);
+
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
 echo "<h1>New Game Guide</h1>";
-formStart("characterDetail.php");
-showTextBox(true);
-showDropdown("bestWeapon", "Best Weapon", getAllName($allWeaponsByWeaponType));
-showDropdown("replacementWeapon", "Replacement Weapon", getAllName($allWeaponsByWeaponType));
-showDropdown("artifacts_1", "Artifacts (2pcs)", getAllName($allArtifacts));
-showDropdown("artifacts_2", "Artifacts (2pcs)", getAllName($allArtifacts));
+formStart(("newGuide.php"), "post");
+showTextBox("title","Title", true);
+showDropdown("bestWeapon", "Best Weapon",$allWeaponsByWeaponType);
+showDropdown("replacementWeapon", "Replacement Weapon",$allWeaponsByWeaponType);
+showDropdown("artifacts_1", "Artifacts (2pcs)",$allArtifacts);
+showDropdown("artifacts_2", "Artifacts (2pcs)",$allArtifacts);
 showTextArea("description", "Description");
 showSubmitButton();
 formEnd();
-
-createGuideData($db);
 
 echo "</div>";
 $db->close();

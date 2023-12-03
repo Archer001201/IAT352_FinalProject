@@ -28,3 +28,7 @@
     background-color: lightgreen;
     padding: 10px;
 }
+
+.guideCard{
+    border: 1px solid red;
+}

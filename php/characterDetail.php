@@ -22,20 +22,23 @@ if ($db->connect_errno) {
     exit();
 }
 
-if (!empty($_GET['id'])) $id = $_GET['id'];
+if (!empty($_GET['id'])) $characterID = $_GET['id'];
 else {
     $db->close();
     exit();
 }
 $table = "characters";
-$res = queryPrimaryKey($db,$table, $id);
+$character = queryPrimaryKey($db,$table, $characterID);
+$guides = queryForeignKey($db,"guides","characterID",$characterID);
 session_start();
 
 echo "<div class='mainContainer'>";
-showBasicCharacterInfo($res);
-showAddGuideButton($id);
-
-
+showBasicCharacterInfo($character);
+showAddGuideButton($characterID);
+echo "<div class='guidesContainer'>";
+echo "<h2>Guides for " . $character['name'] . "</h2>";
+showGuideCard($db,$guides);
+echo "</div>";
 echo "</div>";
 
 $db->close();
