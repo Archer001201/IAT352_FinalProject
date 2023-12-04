@@ -36,7 +36,7 @@ if ($db->connect_errno) {
     echo "Database connection error: " . $db->connect_error;
     exit();
 }
-$character = queryPrimaryKey($db,"characters", $characterID);
+$character = queryById($db,"characters", $characterID);
 $allWeaponsByWeaponType = queryForeignKey($db,"weapons","weapon_weaponType", $character['character_weaponType']);
 $allArtifacts = queryAllFromTable($db, "artifacts");
 
@@ -51,18 +51,30 @@ echo "<div class='titleInput'>";
 showTextBox("title","Title", true);
 echo "</div>";
 
+echo "<div class='equipment-section'>";
+echo "<div class='horizontal-layout'>";
+echo "<div>";
 echo "<div class='horizontal-layout'>";
 showImageByQueryId($db,"weapons","bestWeapon",$allWeaponsByWeaponType);
 showDropdown("bestWeapon", "Best Weapon",$allWeaponsByWeaponType);
-showImageByQueryId($db,"weapons","replacementWeapon",$allWeaponsByWeaponType);
-showDropdown("replacementWeapon", "Replacement Weapon",$allWeaponsByWeaponType);
 echo "</div>";
-
 echo "<div class='horizontal-layout'>";
 showImageByQueryId($db,"artifacts","artifacts_1",$allArtifacts);
 showDropdown("artifacts_1", "Artifacts (2pcs)",$allArtifacts);
+echo "</div>";
+echo "</div>";
+
+echo "<div>";
+echo "<div class='horizontal-layout'>";
+showImageByQueryId($db,"weapons","replacementWeapon",$allWeaponsByWeaponType);
+showDropdown("replacementWeapon", "Replacement Weapon",$allWeaponsByWeaponType);
+echo "</div>";
+echo "<div class='horizontal-layout'>";
 showImageByQueryId($db,"artifacts","artifacts_2",$allArtifacts);
 showDropdown("artifacts_2", "Artifacts (2pcs)",$allArtifacts);
+echo "</div>";
+echo "</div>";
+echo "</div>";
 echo "</div>";
 
 echo "<div class='description'>";

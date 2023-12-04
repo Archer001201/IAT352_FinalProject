@@ -28,7 +28,7 @@ else {
     exit();
 }
 $table = "weapons";
-$res = queryPrimaryKey($db,$table, $id);
+$res = queryById($db,$table, $id);
 
 echo "<div class='mainContainer'>";
 showBasicWeaponInfo($res);

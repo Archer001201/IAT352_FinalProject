@@ -70,7 +70,7 @@ function showInfoCards($db, $table){
             $types .= 's';
         }
         if (isset($_SESSION['weapon_weaponType']) && $_SESSION['weapon_weaponType'] != "All") {
-            $conditions[] = "weaponTypes.name = ?";
+            $conditions[] = "weapon_weaponType IN (SELECT id FROM weaponTypes WHERE weaponTypes.name = ?)";
             $params[] = $_SESSION['weapon_weaponType'];
             $types .= 's';
         }
@@ -93,18 +93,13 @@ function showInfoCards($db, $table){
             $types .= 's';
         }
         if (isset($_SESSION['character_weaponType']) && $_SESSION['character_weaponType'] != "All") {
-            $conditions[] = "weaponTypes.name = ?";
+            $conditions[] = "character_weaponType IN (SELECT id FROM weaponTypes WHERE weaponTypes.name = ?)";
             $params[] = $_SESSION['character_weaponType'];
             $types .= 's';
         }
     }
 
-    if (count($conditions) > 0) {
-        if ($table == "characters")
-            $query_str .= " LEFT JOIN weaponTypes ON " . $table . ".character_weaponType = weaponTypes.id WHERE " . implode(" AND ", $conditions);
-        if ($table == "weapons")
-            $query_str .= " LEFT JOIN weaponTypes ON " . $table . ".weapon_weaponType = weaponTypes.id WHERE " . implode(" AND ", $conditions);
-    }
+    if (count($conditions) > 0) $query_str .= "  WHERE " . implode(" AND ", $conditions);
 
 //    echo $query_str;
     $stmt = $db->prepare($query_str);

@@ -1,4 +1,6 @@
 <?php
+//require ("sqlHelperFunctions.php");
+//require ("formHelperFunctions.php");
 
 function redirect_to_if($url, $condition, $loginRequestPage){
     if (!$condition) return;
@@ -47,8 +49,8 @@ function updateSession(){
 }
 
 function showImageByQueryId($db, $table, $name, $list){
-    if(isset($_SESSION[$name])) $item = queryPrimaryKey($db, $table, $_SESSION[$name]);
-    else $item = queryPrimaryKey($db, $table, $list[0]['id']);
+    if(isset($_SESSION[$name])) $item = queryById($db, $table, $_SESSION[$name]);
+    else $item = queryById($db, $table, $list[0]['id']);
 
     if ($table == "weapons")
         echo "<img id='" . $name . "_image' src='../res/WeaponImages/" . $item['image'] . "' width=100>";

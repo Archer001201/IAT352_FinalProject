@@ -28,7 +28,7 @@ else {
     exit();
 }
 $table = "artifacts";
-$res = queryPrimaryKey($db,$table, $id);
+$res = queryById($db,$table, $id);
 
 echo "<div class='mainContainer'>";
 showBasicArtifactInfo($res);

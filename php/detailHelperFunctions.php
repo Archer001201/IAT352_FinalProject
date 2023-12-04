@@ -36,35 +36,52 @@ function showAddGuideButton($characterID){
     $_SESSION['characterID'] = $characterID;
 }
 
-function showGuideCard($db,$guides){
+function showGuideCard($db, $guides){
     foreach ($guides as $data) {
-        $bestWeapon = queryPrimaryKey($db,"weapons",$data['bestWeaponID']);
-        $replacementWeapon = queryPrimaryKey($db,"weapons",$data['replacementWeaponID']);
-        $artifact_1 = queryPrimaryKey($db,"artifacts",$data['artifactID_1']);
-        $artifact_2 = queryPrimaryKey($db,"artifacts",$data['artifactID_2']);
-        echo "<div class='guideCard' id='guideID_" . $data['guideID'] . "'>";
-        echo "<h3>" . $data['guideTitle'] . "</h3>";
+        $bestWeapon = queryById($db,"weapons",$data['bestWeaponID']);
+        $replacementWeapon = queryById($db,"weapons",$data['replacementWeaponID']);
+        $artifact_1 = queryById($db,"artifacts",$data['artifactID_1']);
+        $artifact_2 = queryById($db,"artifacts",$data['artifactID_2']);
+        $publisher = queryForeignKey($db,"users", "uid", $data['userID']);
+        $postDateTimestamp = strtotime($data['postDate']);
+        $formattedDate = date('Y-m-d', $postDateTimestamp);
 
+        echo "<div class='guideCard' id='guideID_" . $data['guideID'] . "'>";
+        echo "<h2>" . $data['guideTitle'] . "</h2>";
         echo "<div class='horizontal-layout'>";
+
+
+        echo "<div class='equipment'>";
+        echo "<div class='vertical-layout'>";
         echo "<div><p><strong>Best Weapon</strong></p>";
         echo "<img src='../res/WeaponImages/" . $bestWeapon['image'] . "' width=100>";
         echo "</div>";
 
-        echo "<div><p><strong>Replacement Weapon</strong></p>";
-        echo "<img src='../res/WeaponImages/" . $replacementWeapon['image'] . "' width=100>";
-        echo "</div>";
-        echo "</div>";
-
-        echo "<div class='horizontal-layout'>";
         echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
         echo "<img src='../res/ArtifactImages/" . $artifact_1['image'] . "' width=75>";
         echo "</div>";
+        echo "</div>";
+
+        echo "<div class='vertical-layout'>";
+        echo "<div><p><strong>Replacement Weapon</strong></p>";
+        echo "<img src='../res/WeaponImages/" . $replacementWeapon['image'] . "' width=100>";
+        echo "</div>";
+
 
         echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
         echo "<img src='../res/ArtifactImages/" . $artifact_2['image'] . "' width=75>";
         echo "</div>";
         echo "</div>";
+        echo "</div>";
 
+        echo "<div class='guide-info'>";
+        echo "<p><strong>Description</strong></p>";
+        echo "<p>" . $data['guideDescription'] . "</p>";
+        echo "<p>Published by <strong>" . $publisher[0]['userName'] . "</strong></p>";
+        echo "<p>" . $formattedDate . "</p>";
+        echo "</div>";
+
+        echo "</div>";
         echo "</div>";
     }
 }

@@ -31,25 +31,44 @@
 
 .guideCard{
     border: 1px solid red;
+    width: 75%;
+    margin: 2rem auto;
 }
 
-.guideCard img{
-    /*border: 1px solid red;*/
+h2{
+    text-align: center;
 }
 
 .horizontal-layout{
     display: flex;
     justify-content: space-around;
-    /*align-items: stretch;*/
+}
+
+.vertical-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 50%;
     /*border: 1px solid red;*/
 }
 
-.horizontal-layout div{
+.vertical-layout div{
     /*border: 1px solid red;*/
     display: flex;
     flex-direction: column;
     /*justify-content: space-around;*/
     align-items: center;
+}
+
+.equipment{
+    /*border: 1px solid red;*/
+    width: 40%;
+    display: flex;
+}
+
+.guide-info{
+    /*border: 1px solid black;*/
+    width: 45%;
 }
 

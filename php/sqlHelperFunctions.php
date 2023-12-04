@@ -1,5 +1,5 @@
 <?php
-function queryPrimaryKey($db, $table, $id){
+function queryById($db, $table, $id){
     if (!is_numeric($id)) {
         echo "Invalid ID";
         return null;
