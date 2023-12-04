@@ -42,12 +42,29 @@ function showGuideCard($db,$guides){
         $replacementWeapon = queryPrimaryKey($db,"weapons",$data['replacementWeaponID']);
         $artifact_1 = queryPrimaryKey($db,"artifacts",$data['artifactID_1']);
         $artifact_2 = queryPrimaryKey($db,"artifacts",$data['artifactID_2']);
-        echo "<div class='guideCard'>";
+        echo "<div class='guideCard' id='guideID_" . $data['guideID'] . "'>";
         echo "<h3>" . $data['guideTitle'] . "</h3>";
+
+        echo "<div class='horizontal-layout'>";
+        echo "<div><p><strong>Best Weapon</strong></p>";
         echo "<img src='../res/WeaponImages/" . $bestWeapon['image'] . "' width=100>";
+        echo "</div>";
+
+        echo "<div><p><strong>Replacement Weapon</strong></p>";
         echo "<img src='../res/WeaponImages/" . $replacementWeapon['image'] . "' width=100>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "<div class='horizontal-layout'>";
+        echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
         echo "<img src='../res/ArtifactImages/" . $artifact_1['image'] . "' width=75>";
+        echo "</div>";
+
+        echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
         echo "<img src='../res/ArtifactImages/" . $artifact_2['image'] . "' width=75>";
+        echo "</div>";
+        echo "</div>";
+
         echo "</div>";
     }
 }

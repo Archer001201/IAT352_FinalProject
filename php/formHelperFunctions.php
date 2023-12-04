@@ -6,10 +6,15 @@
  * $options -> 存储下拉菜单选项的array
  */
 function showDropdown($label, $displayName, $options){
-    echo "<label for='" . $label . "'>" . $displayName;
+    echo "<label for='" . $label . "'>";
+    echo "<h3>" . $displayName . "</h3>";
     echo "<select name='" . $label . "' id='" . $label . "'>";
-    foreach ($options as $opt){
-        $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt) ? 'selected' : '';
+    for ($i=0; $i < count($options); $i++){
+        $opt = $options[$i];
+        if ($i == 0 && !isset($_SESSION[$label]))
+            $selected = 'selected';
+        else
+            $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt['id']) ? 'selected' : '';
         echo "<option value='" . $opt['id'] . "' " . $selected . ">" . $opt['name'] . "</option>";
     }
     echo "</select></label>";
@@ -30,13 +35,15 @@ function showRadioButton($label, $displayName, $options){
 }
 
 function showTextBox($label, $displayName, $required){
-    echo "<label for='" . $label . "'>" . $displayName;
+    echo "<label for='" . $label . "'>";
+    echo "<h2>" . $displayName . "</h2>";
     echo "<input type='text' id='" . $label . "' name='" . $label . "'" . ($required ? "required" : ""). ">";
     echo "</label>";
 }
 
 function showTextArea($label, $displayName){
-    echo "<label for='" . $label . "'>" . $displayName;
+    echo "<label for='" . $label . "'>";
+    echo "<h2>" . $displayName . "</h2>";
     echo "<textarea id='" . $label . "' name='". $label . "'></textArea>";
     echo "</label>";
 }

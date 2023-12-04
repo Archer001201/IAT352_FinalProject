@@ -32,3 +32,24 @@
 .guideCard{
     border: 1px solid red;
 }
+
+.guideCard img{
+    /*border: 1px solid red;*/
+}
+
+.horizontal-layout{
+    display: flex;
+    justify-content: space-around;
+    /*align-items: stretch;*/
+    width: 50%;
+    /*border: 1px solid red;*/
+}
+
+.horizontal-layout div{
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-around;*/
+    align-items: center;
+}
+

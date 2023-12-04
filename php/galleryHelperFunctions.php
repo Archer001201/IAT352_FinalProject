@@ -44,6 +44,11 @@ function updateSession(){
 
     if (isset($_GET["weaponRarity"])) $_SESSION['weaponRarity'] = $_GET['weaponRarity'];
     if (isset($_GET["weapon_weaponType"])) $_SESSION['weapon_weaponType'] = $_GET['weapon_weaponType'];
+
+    if (isset($_SESSION['bestWeapon'])) unset($_SESSION['bestWeapon']);
+    if (isset($_SESSION['replacementWeapon'])) unset($_SESSION['replacementWeapon']);
+    if (isset($_SESSION['artifacts_1'])) unset($_SESSION['artifacts_1']);
+    if (isset($_SESSION['artifacts_2'])) unset($_SESSION['artifacts_2']);
 }
 
 /*
