@@ -90,10 +90,10 @@ function showGuideCard($db, $guides){
         echo "</div>";
 
         echo "<div class='guide-buttons'>";
-        echo "<button class='svg-button' id='likeButton' data-guide-id='" . $data['guideID'] . "'>";
+        echo "<button class='svg-button' id='userLike' data-guide-id='" . $data['guideID'] . "'>";
         showHeart();
         echo "</button>";
-        echo "<button class='svg-button' id='favoriteButton' data-guide-id='" . $data['guideID'] . "'>";
+        echo "<button class='svg-button' id='userFavorite' data-guide-id='" . $data['guideID'] . "'>";
         showStar();
         echo "</button>";
         echo "<a href='#'>See More Details and Comments</a>";
@@ -105,6 +105,9 @@ function showGuideCard($db, $guides){
     }
 }
 
-function handleUserLikeTable($db, $table){
-
-}
+//function handleUserLikeTable($db, $table, $postKey){
+//    if (empty($_SESSION['valid_user']) && empty($_POST[$postKey])) return;
+//    $uid = $_SESSION['valid_user'];
+//    $guideId = $_POST[$postKey];
+//
+//}

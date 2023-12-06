@@ -3,36 +3,19 @@
 调用fetchData函数以监听Gallery页面的下拉菜单输入
  */
 $(document).ready(function() {
-    selectData("bestWeapon");
-    selectData("replacementWeapon");
-    selectData("artifacts_1");
-    selectData("artifacts_2");
+    updateImageByDropdown("bestWeapon");
+    updateImageByDropdown("replacementWeapon");
+    updateImageByDropdown("artifacts_1");
+    updateImageByDropdown("artifacts_2");
 
-    fetchData("characterRarity");
-    fetchData("region");
-    fetchData("elementType");
-    fetchData("character_weaponType");
-    fetchData("weaponRarity");
-    fetchData("weapon_weaponType");
+    filterDataByRadio("characterRarity");
+    filterDataByRadio("region");
+    filterDataByRadio("elementType");
+    filterDataByRadio("character_weaponType");
+    filterDataByRadio("weaponRarity");
+    filterDataByRadio("weapon_weaponType");
 
-    $('#likeButton').click(function() {
-        if (!isLogin) {
-            window.location.href = '../php/sign-in.php?loginRequest=userLike';
-            return;
-        }
-        let guideId = $(this).data('guide-id');
-        $.ajax({
-            type: 'POST',
-            url: 'characterDetail.php',
-            data: { guide_id: guideId },
-            success: function(response) {
-                alert('点赞成功！');
-            },
-            error: function() {
-                alert('点赞失败！');
-            }
-        });
-    });
+    handleDataByButton("userLike");
 });
 
 /*
@@ -40,7 +23,7 @@ $(document).ready(function() {
 fetchData函数会自动获取当前的php页面是charactersGallery还是weaponsGallery，所以该函数只能用于Gallery页面的数据查询和筛选
 keyName -> jquery和ajax需要获取和更新的元素
  */
-function selectData(keyName) {
+function updateImageByDropdown(keyName) {
     let inputElement = '#' + keyName;
     let responseElement = "#" + keyName + "_image";
     $(inputElement).on('change', function (){
@@ -61,7 +44,7 @@ function selectData(keyName) {
     });
 }
 
-function fetchData(keyName) {
+function filterDataByRadio(keyName) {
     let inputElements = 'input[type=radio][name=' + keyName + ']';
     $(inputElements).on('change', function (){
         let result = $(this).val();
@@ -87,6 +70,28 @@ function fetchData(keyName) {
             },
             error: function(xhr, status, error) {
                 console.error(error);
+            }
+        });
+    });
+}
+
+function handleDataByButton(keyName){
+    $('#' + keyName).click(function() {
+        if (!isLogin) {
+            window.location.href = '../php/sign-in.php?loginRequest=' + keyName;
+            return;
+        }
+        let guideId = $(this).data('guide-id');
+        let field = keyName + '_guideId';
+        $.ajax({
+            type: 'POST',
+            url: 'characterDetail.php',
+            data: { [field]: guideId },
+            success: function(response) {
+                alert('点赞成功！');
+            },
+            error: function() {
+                alert('点赞失败！');
             }
         });
     });
