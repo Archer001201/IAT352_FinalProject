@@ -1,7 +1,7 @@
 <?php
 
 //session_start for store user account infor for detect signin or signout
-session_start();
+//session_start();
 
 //change https and http when user in signin and register page.
 function no_SSL() {
@@ -41,8 +41,10 @@ function is_logged_in() {
 }
 
 function showLoginRequestMessage(){
-    if (empty($_SESSION['loginRequestPage'])) return;
-    $loginRequestPage = $_SESSION['loginRequestPage'];
+    if (empty($_GET['loginRequest'])) return;
+    $loginRequestPage = $_GET['loginRequest'];
     if ($loginRequestPage == "newGuide")
         echo "<p>Please log in to post game guides.</p>";
+    if ($loginRequestPage == "userLike")
+        echo "<p>Please log in to like game guides.</p>";
 }

@@ -5,14 +5,15 @@
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/gallery.css" rel="stylesheet">
     <script src="../js/jquery-3.6.1.js"></script>
-    <script src="../js/DataFilter.js"></script>
+    <script src="../js/ajax.js"></script>
 </head>
 <body>
 
 <?php
+require ("header.php");
 require("loginHelperFunctions.php");
 require("galleryHelperFunctions.php");
-require ("header.php");
+
 
 $dbserver = "localhost";
 $dbuser = "root";

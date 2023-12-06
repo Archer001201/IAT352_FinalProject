@@ -8,9 +8,10 @@
 <body>
 
 <?php
+require ("header.php");
 require("loginHelperFunctions.php");
 require("detailHelperFunctions.php");
-require ("header.php");
+
 
 $dbserver = "localhost";
 $dbuser = "root";

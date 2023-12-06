@@ -4,13 +4,16 @@
     <link href="../css/normalize.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/detail.css" rel="stylesheet">
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script src="../js/ajax.js"></script>
 </head>
 <body>
 
 <?php
+require ("header.php");
 require("loginHelperFunctions.php");
 require("detailHelperFunctions.php");
-require ("header.php");
+
 
 $dbserver = "localhost";
 $dbuser = "root";
@@ -30,7 +33,7 @@ else {
 $table = "characters";
 $character = queryById($db,$table, $characterID);
 $guides = queryForeignKey($db,"guides","characterID",$characterID);
-session_start();
+//session_start();
 
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
@@ -40,7 +43,6 @@ echo "<h2>Guides for " . $character['name'] . "</h2>";
 showGuideCard($db,$guides);
 echo "</div>";
 echo "</div>";
-showThumb();
 $db->close();
 ?>
 

@@ -9,6 +9,7 @@
 </head>
 <body>
 <?php
+require ('header.php');
 include('loginHelperFunctions.php');
 
 //require_SSL();
@@ -56,7 +57,7 @@ else {
     $faculty = "";
 }
 
-require('header.php');
+//require('header.php');
 ?>
             <section>
             <h2>Register for a Classic Models account</h2>
@@ -77,8 +78,6 @@ require('header.php');
                 <?php if(!empty($message)) echo '<p class="message">' . $message . '</p>' ?>
             </form>
             </section>
-
-
 <?php
 	require('footer.php');
     $db->close();

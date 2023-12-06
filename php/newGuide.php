@@ -6,15 +6,16 @@
     <link href="../css/detail.css" rel="stylesheet">
     <link href="../css/newGuide.css" rel="stylesheet">
     <script src="../js/jquery-3.6.1.js"></script>
-    <script src="../js/DataSelector.js"></script>
+    <script src="../js/ajax.js"></script>
 </head>
 <body>
 
 <?php
+require("header.php");
 require("newGuideHelperFunctions.php");
 require("detailHelperFunctions.php");
 require("loginHelperFunctions.php");
-require("header.php");
+
 
 updateSession();
 //session_start();

@@ -1,5 +1,12 @@
 <?php
 //require ("sqlHelperFunctions.php");
+function redirect_to_if($url, $condition, $loginRequestPage){
+    if (!$condition) return;
+//    $_SESSION['loginRequestPage'] = $loginRequestPage;
+    header('Location: ' . $url . "?loginRequest=" . $loginRequestPage);
+    exit();
+}
+
 function showBasicCharacterInfo($res){
     echo "<div class='basicInfoContainer'>";
     echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
@@ -83,10 +90,10 @@ function showGuideCard($db, $guides){
         echo "</div>";
 
         echo "<div class='guide-buttons'>";
-        echo "<button class='svg-button'>";
+        echo "<button class='svg-button' id='likeButton' data-guide-id='" . $data['guideID'] . "'>";
         showHeart();
         echo "</button>";
-        echo "<button class='svg-button'>";
+        echo "<button class='svg-button' id='favoriteButton' data-guide-id='" . $data['guideID'] . "'>";
         showStar();
         echo "</button>";
         echo "<a href='#'>See More Details and Comments</a>";
@@ -96,4 +103,8 @@ function showGuideCard($db, $guides){
         echo "</div>";
         echo "</div>";
     }
+}
+
+function handleUserLikeTable($db, $table){
+
 }

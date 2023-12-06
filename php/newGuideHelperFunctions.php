@@ -1,14 +1,6 @@
 <?php
 //require ("sqlHelperFunctions.php");
 //require ("formHelperFunctions.php");
-
-function redirect_to_if($url, $condition, $loginRequestPage){
-    if (!$condition) return;
-    $_SESSION['loginRequestPage'] = $loginRequestPage;
-    header('Location: ' . $url);
-    exit();
-}
-
 function createGuideData($db){
     if (isset($_REQUEST['submit'])) {
         $uid = $_SESSION['valid_user'];
@@ -41,7 +33,7 @@ function createGuideData($db){
 }
 
 function updateSession(){
-    session_start();
+//    session_start();
     if (isset($_GET["bestWeapon"])) $_SESSION['bestWeapon'] = $_GET['bestWeapon'];
     if (isset($_GET["replacementWeapon"])) $_SESSION['replacementWeapon'] = $_GET['replacementWeapon'];
     if (isset($_GET["artifacts_1"])) $_SESSION['artifacts_1'] = $_GET['artifacts_1'];

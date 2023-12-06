@@ -9,6 +9,7 @@
 <body>
     
 <?php
+require ('header.php');
 include('loginHelperFunctions.php');
 //require_SSL();
 
@@ -51,7 +52,7 @@ if (!isset($_POST['submit'])) { // detect form submission
     else $message = "Sorry, email and password combination not registered. <a href=\"\">Forgot?</a>";
 }
 
-require('header.php');
+//require('header.php');
 ?>
     <section>
 	<h2>Sign in </h2>
