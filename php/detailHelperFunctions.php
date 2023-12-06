@@ -75,10 +75,22 @@ function showGuideCard($db, $guides){
         echo "</div>";
 
         echo "<div class='guide-info'>";
+        echo "<div>";
         echo "<p><strong>Description</strong></p>";
-        echo "<p>" . $data['guideDescription'] . "</p>";
+        echo "<p class='guide-description'>" . $data['guideDescription'] . "</p>";
         echo "<p>Published by <strong>" . $publisher[0]['userName'] . "</strong></p>";
         echo "<p>" . $formattedDate . "</p>";
+        echo "</div>";
+
+        echo "<div class='guide-buttons'>";
+        echo "<button class='svg-button'>";
+        showHeart();
+        echo "</button>";
+        echo "<button class='svg-button'>";
+        showStar();
+        echo "</button>";
+        echo "<a href='#'>See More Details and Comments</a>";
+        echo "</div>";
         echo "</div>";
 
         echo "</div>";

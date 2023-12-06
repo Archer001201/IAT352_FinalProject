@@ -24,6 +24,10 @@ nav{
     display: flex;
 }
 
+a{
+    color: black;
+}
+
 .nav-button{
     display: flex;
     justify-content: center;
@@ -40,6 +44,21 @@ nav{
     background-color: #DBD2B9;
 }
 
+.svg-heart{
+    width: 35px;
+}
+
+.svg-star{
+    width: 35px;
+}
+
+.svg-button{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
 
 /*Font Settings*/
 @font-face {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2023 at 09:11 AM
+-- Generation Time: Dec 06, 2023 at 07:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -134,6 +134,29 @@ CREATE TABLE `guides` (
   `artifactID_2` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `guides`
+--
+
+INSERT INTO `guides` (`guideID`, `postDate`, `likes`, `favorites`, `characterID`, `userID`, `guideTitle`, `guideDescription`, `bestWeaponID`, `replacementWeaponID`, `artifactID_1`, `artifactID_2`) VALUES
+(1, '2023-12-03 05:58:32', 0, 0, 1, 3, 'title', 'guide', 12, 12, 1, 1),
+(2, '2023-12-03 06:05:35', 0, 0, 1, 3, 'best guide for Nahida', 'this is the best guide for Nahida', 12, 13, 4, 1),
+(3, '2023-12-03 06:07:00', 0, 0, 2, 3, 'My beloved Furina ', 'Best Hydro archon', 4, 2, 3, 4),
+(4, '2023-12-03 06:11:37', 0, 0, 2, 3, 'Furina best', 'You are real hydro god', 1, 1, 1, 1),
+(5, '2023-12-03 06:13:14', 0, 0, 2, 4, 'haha', 'lala', 1, 1, 1, 1),
+(6, '2023-12-03 22:11:06', 0, 0, 13, 4, 'Keqing best', 'Nya Keqing', 1, 1, 1, 1),
+(7, '2023-12-03 22:19:43', 0, 0, 1, 4, 'new guide', '', 12, 12, 1, 1),
+(8, '2023-12-03 22:19:56', 0, 0, 1, 4, 'nahida', '', 12, 12, 1, 1),
+(9, '2023-12-03 22:20:06', 0, 0, 1, 4, 'nice', '', 12, 12, 1, 1),
+(10, '2023-12-04 01:10:18', 0, 0, 11, 4, 'nb', 'nb kaeya', 3, 3, 3, 4),
+(11, '2023-12-04 02:56:44', 0, 0, 5, 4, 'hhhhhh', '', 25, 25, 1, 1),
+(12, '2023-12-04 06:14:10', 0, 0, 1, 4, 'real nahida', 'Nahida\'s best build as a Sub-DPS and Support role will have her use the Deepwood Memories with Elemental Mastery Stats. Your goal should be to get around 800 to 1000 Elemental Mastery on Nahida.\r\n\r\nGenerally, EM Mainstats are her best choice. But since Nahida\'s passive lets any character share their Elemental Mastery with the character on-field, you can also opt to use a Dendro Goblet or a Crit Circlet to increase her damage.\r\n\r\nIt is better to invest in CRIT stats rather than going past 1000 EM since it provides more value.', 14, 12, 1, 1),
+(13, '2023-12-04 07:23:05', 0, 0, 1, 4, 'Dendro', 'You won\'t have to focus as much on EM substats for this build since a teammate with a very high EM stat can share their Elemental Mastery with Nahida.\r\n\r\nFor an on-field Main DPS Nahida, her talent priority should have an equal spread for leveling up all three of her talents.\r\n\r\nFor a Sub-DPS and Support Nahida, you need to prioritize leveling her Elemental Skill first since it is the bulk of her damage. Next, you can level up your Elemental Burst while leaving her Normal Attacks for last.', 12, 12, 1, 1),
+(14, '2023-12-04 20:52:04', 0, 0, 2, 3, 'fsdhkjfhksjd', 'gsdhjkgfhdskjghkjs', 5, 4, 3, 3),
+(15, '2023-12-05 06:47:06', 0, 0, 7, 3, 'gang', '', 18, 18, 1, 1),
+(16, '2023-12-06 04:19:34', 0, 0, 8, 3, 'the', '', 37, 35, 1, 1),
+(17, '2023-12-06 06:07:48', 0, 0, 8, 3, 'shdjkashdjkhaskj', 'fsdjkgfhahjgsdjyfgjkhasd', 37, 39, 4, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -141,7 +164,7 @@ CREATE TABLE `guides` (
 --
 
 CREATE TABLE `users` (
-  `userID` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
   `userName` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
@@ -151,8 +174,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `userName`, `email`, `password`) VALUES
-(1, 'Archer001201', 'zhongchuqiao1201@gmail.com', '$2y$10$D1r.3TuYelzOe1N5voZmtuzpFDzmyJ2phsyZijbbM.Z1y/WeQ7M0.');
+INSERT INTO `users` (`uid`, `userName`, `email`, `password`) VALUES
+(2, 'Archer', 'zhongchuqiao1201@gmail.com', '$2y$10$k20iROwePOlPYtqy2hJqjuQMAf5jBg0Gy.RALM8u4CbDAG9ryIJPu'),
+(3, 'Chuqiao', '2111410956@qq.com', '$2y$10$8Fr2rENWyt/xkGP6VYjLv.fJkqdRKzUz6gyV6uO5fOxG0BdN0qIvC'),
+(4, 'freya', '123@qq.com', '$2y$10$Aib6RFotbhU/qhus7Ruja.lf556LMow8YHP/JMqCokZdamFO39ghK');
 
 -- --------------------------------------------------------
 
@@ -290,7 +315,7 @@ ALTER TABLE `guides`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userID`);
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- Indexes for table `user_favorite`
@@ -338,13 +363,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `guides`
 --
 ALTER TABLE `guides`
-  MODIFY `guideID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `guideID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `weapons`
@@ -372,7 +397,7 @@ ALTER TABLE `characters`
 -- Constraints for table `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`uid`),
   ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`guideID`) REFERENCES `guides` (`guideID`);
 
 --
@@ -380,7 +405,7 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `guides`
   ADD CONSTRAINT `guides_ibfk_1` FOREIGN KEY (`characterID`) REFERENCES `characters` (`id`),
-  ADD CONSTRAINT `guides_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `guides_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`uid`),
   ADD CONSTRAINT `guides_ibfk_3` FOREIGN KEY (`bestWeaponID`) REFERENCES `weapons` (`id`),
   ADD CONSTRAINT `guides_ibfk_4` FOREIGN KEY (`replacementWeaponID`) REFERENCES `weapons` (`id`),
   ADD CONSTRAINT `guides_ibfk_5` FOREIGN KEY (`artifactID_1`) REFERENCES `artifacts` (`id`),
@@ -390,7 +415,7 @@ ALTER TABLE `guides`
 -- Constraints for table `user_favorite`
 --
 ALTER TABLE `user_favorite`
-  ADD CONSTRAINT `user_favorite_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `user_favorite_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`uid`),
   ADD CONSTRAINT `user_favorite_ibfk_2` FOREIGN KEY (`guideID`) REFERENCES `guides` (`guideID`);
 
 --
