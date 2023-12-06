@@ -16,15 +16,17 @@ keyName -> jquery和ajax需要获取和更新的元素
  */
 function selectData(keyName) {
     let inputElement = '#' + keyName;
+    let responseElement = "#" + keyName + "_image";
     $(inputElement).on('change', function (){
         let result = $(this).val();
 
         $.ajax({
-            url: "newGuide.php",
+            url: "getImageUrl.php",
             type: 'GET',
             data: {[keyName]: result},
             success: function (response){
-                $("body").html(response);
+                console.log(response);
+                $(responseElement).attr('src', response);
             },
             error: function(xhr, status, error) {
                 console.error(error);
