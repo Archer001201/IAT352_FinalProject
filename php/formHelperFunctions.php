@@ -30,7 +30,7 @@ function showDropdown($label, $displayName, $options){
             $selected = 'selected';
         else
             $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt) ? 'selected' : '';
-        echo "<option value='" . $opt . "' " . $selected . ">" . $opt . "</option>";
+        echo "<option value='" . $i . "' " . $selected . ">" . $opt . "</option>";
     }
     echo "</select></label>";
 }

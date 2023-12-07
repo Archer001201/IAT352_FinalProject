@@ -25,15 +25,16 @@ if ($db->connect_errno) {
     exit();
 }
 
-if (!empty($_GET['id'])) $characterID = $_GET['id'];
+if (!empty($_GET['id'])){
+    $characterID = $_GET['id'];
+    $_SESSION['characterId'] = $_GET['id'];
+}
 else {
     $db->close();
     exit();
 }
 $table = "characters";
 $character = queryById($db,$table, $characterID);
-$guides = queryForeignKey($db,"guides","characterID",$characterID);
-//session_start();
 
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
@@ -42,10 +43,8 @@ showAddGuideButton($characterID);
 formStart("characterDetail.php", "GET");
 showDropdown("guideSorting", "Sorting", ["Likes: Low to High", "Likes: High to Low", "Favorites: Low to High", "Favorites: High to Low"]);
 formEnd();
-
-echo "<div class='guidesContainer'>";
-echo "<h2>Guides for " . $character['name'] . "</h2>";
-showGuideCard($db,$guides);
+echo "<div id='guidesContainer'>";
+require ("characterGuides.php");
 echo "</div>";
 echo "</div>";
 $db->close();

@@ -74,5 +74,27 @@ function queryAllFromTable($db, $table){
 
     return $allRows;
 }
+//
+//function sortingGuideData($db, $table, $order){
+//    $query = "SELECT g.*, COALESCE(i.count, 0) AS count ";
+//    $query .= "FROM guides g ";
+//    $query .= "LEFT JOIN (";
+//    $query .= "SELECT guideID, COUNT(*) as count ";
+//    $query .= "FROM " . $table;
+//    $query .= " GROUP BY guideID) ";
+//    $query .= "i ON g.guideID = i.guideID ORDER BY i.count " . $order;
+//
+//    $result = $db->query($query);
+//    if ($result === false) {
+//        echo "Query error: " . $db->error;
+//        return null;
+//    }
+//
+//    $allRows = [];
+//    while ($row = $result->fetch_assoc()) {
+//        $allRows[] = $row;
+//    }
+//    return $allRows;
+//}
 
 
