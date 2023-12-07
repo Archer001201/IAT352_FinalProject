@@ -41,7 +41,7 @@ showBasicCharacterInfo($character);
 showAddGuideButton($characterID);
 
 formStart("characterDetail.php", "GET");
-showDropdown("guideSorting", "Sorting", ["Likes: Low to High", "Likes: High to Low", "Favorites: Low to High", "Favorites: High to Low"]);
+showDropdown("guideSorting", "Sorting", ["Likes: High to Low", "Likes: Low to High", "Favorites: High to Low", "Favorites: Low to High"]);
 formEnd();
 echo "<div id='guidesContainer'>";
 require ("characterGuides.php");

@@ -18,17 +18,81 @@ if (empty($_GET['guideSorting'])) $guides = queryForeignKeyForGuide($db,"guides"
 else{
     $guideSorting = $_GET['guideSorting'];
 
-    if ($guideSorting == 0) $guides = sortingGuideData($db, "user_like", "ASC", $characterId);
-    else if ($guideSorting == 1) $guides = sortingGuideData($db, "user_like", "DESC", $characterId);
-    else if ($guideSorting == 2) $guides = sortingGuideData($db, "user_favorite", "ASC", $characterId);
-    else if ($guideSorting == 3) $guides = sortingGuideData($db, "user_favorite", "DESC", $characterId);
+    if ($guideSorting == 0) $guides = sortingGuideData($db, "user_like", "DESC", $characterId);
+    else if ($guideSorting == 1) $guides = sortingGuideData($db, "user_like", "ASC", $characterId);
+    else if ($guideSorting == 2) $guides = sortingGuideData($db, "user_favorite", "DESC", $characterId);
+    else if ($guideSorting == 3) $guides = sortingGuideData($db, "user_favorite", "ASC", $characterId);
     else $guides = queryForeignKeyForGuide($db,"guides","characterID",$_SESSION['characterId']);
 }
-
 
 echo "<h2>Guides for " . $character['name'] . "</h2>";
 showGuideCard($db,$guides);
 
+function showGuideCard($db, $guides){
+    foreach ($guides as $data) {
+        $bestWeapon = queryByIdForGuide($db,"weapons",$data['bestWeaponID']);
+        $replacementWeapon = queryByIdForGuide($db,"weapons",$data['replacementWeaponID']);
+        $artifact_1 = queryByIdForGuide($db,"artifacts",$data['artifactID_1']);
+        $artifact_2 = queryByIdForGuide($db,"artifacts",$data['artifactID_2']);
+        $publisher = queryForeignKeyForGuide($db,"users", "uid", $data['userID']);
+        $postDateTimestamp = strtotime($data['postDate']);
+        $formattedDate = date('Y-m-d', $postDateTimestamp);
+
+        echo "<div class='guideCard' id='guideID_" . $data['guideID'] . "'>";
+        echo "<h2>" . $data['guideTitle'] . "</h2>";
+        echo "<div class='horizontal-layout'>";
+
+        echo "<div class='equipment'>";
+        echo "<div class='vertical-layout'>";
+        echo "<div><p><strong>Best Weapon</strong></p>";
+        echo "<img src='../res/WeaponImages/" . $bestWeapon['image'] . "' width=100>";
+        echo "</div>";
+
+        echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
+        echo "<img src='../res/ArtifactImages/" . $artifact_1['image'] . "' width=75>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "<div class='vertical-layout'>";
+        echo "<div><p><strong>Replacement Weapon</strong></p>";
+        echo "<img src='../res/WeaponImages/" . $replacementWeapon['image'] . "' width=100>";
+        echo "</div>";
+
+        echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
+        echo "<img src='../res/ArtifactImages/" . $artifact_2['image'] . "' width=75>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "<div class='guide-info'>";
+        echo "<div>";
+        echo "<p><strong>Description</strong></p>";
+        echo "<p class='guide-description'>" . $data['guideDescription'] . "</p>";
+        echo "<p>Published by <strong>" . $publisher[0]['userName'] . "</strong></p>";
+        echo "<p>" . $formattedDate . "</p>";
+        echo "</div>";
+
+        echo "<div class='guide-buttons'>";
+        echo "<button class='svg-button userLike' data-guide-id='" . $data['guideID'] . "'>";
+//        showUserAmount($db, "user_like", $data['guideID']);
+        echo "<p class='count' data-userLike-guide-id='" . $data['guideID'] . "'>"
+            . showUserAmount($db, "user_like", $data['guideID']) . "</p>";
+        showHeart();
+        echo "</button>";
+        echo "<button class='svg-button userFavorite' data-guide-id='" . $data['guideID'] . "'>";
+//        showUserAmount($db, "user_favorite", $data['guideID']);
+        echo "<p class='count' data-userFavorite-guide-id='" . $data['guideID'] . "'>"
+            . showUserAmount($db, "user_favorite", $data['guideID']) . "</p>";
+        showStar();
+        echo "</button>";
+        echo "<a href='#'>See More Details and Comments</a>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "</div>";
+        echo "</div>";
+    }
+}
 
 function sortingGuideData($db, $table, $order, $id){
     $query = "SELECT g.*, COALESCE(i.count, 0) AS count ";
@@ -112,69 +176,6 @@ function queryByIdForGuide($db, $table, $id){
     return $result->fetch_assoc();
 }
 
-function showGuideCard($db, $guides){
-    foreach ($guides as $data) {
-        $bestWeapon = queryByIdForGuide($db,"weapons",$data['bestWeaponID']);
-        $replacementWeapon = queryByIdForGuide($db,"weapons",$data['replacementWeaponID']);
-        $artifact_1 = queryByIdForGuide($db,"artifacts",$data['artifactID_1']);
-        $artifact_2 = queryByIdForGuide($db,"artifacts",$data['artifactID_2']);
-        $publisher = queryForeignKeyForGuide($db,"users", "uid", $data['userID']);
-        $postDateTimestamp = strtotime($data['postDate']);
-        $formattedDate = date('Y-m-d', $postDateTimestamp);
-
-        echo "<div class='guideCard' id='guideID_" . $data['guideID'] . "'>";
-        echo "<h2>" . $data['guideTitle'] . "</h2>";
-        echo "<div class='horizontal-layout'>";
-
-        echo "<div class='equipment'>";
-        echo "<div class='vertical-layout'>";
-        echo "<div><p><strong>Best Weapon</strong></p>";
-        echo "<img src='../res/WeaponImages/" . $bestWeapon['image'] . "' width=100>";
-        echo "</div>";
-
-        echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
-        echo "<img src='../res/ArtifactImages/" . $artifact_1['image'] . "' width=75>";
-        echo "</div>";
-        echo "</div>";
-
-        echo "<div class='vertical-layout'>";
-        echo "<div><p><strong>Replacement Weapon</strong></p>";
-        echo "<img src='../res/WeaponImages/" . $replacementWeapon['image'] . "' width=100>";
-        echo "</div>";
-
-        echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
-        echo "<img src='../res/ArtifactImages/" . $artifact_2['image'] . "' width=75>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-
-        echo "<div class='guide-info'>";
-        echo "<div>";
-        echo "<p><strong>Description</strong></p>";
-        echo "<p class='guide-description'>" . $data['guideDescription'] . "</p>";
-        echo "<p>Published by <strong>" . $publisher[0]['userName'] . "</strong></p>";
-        echo "<p>" . $formattedDate . "</p>";
-        echo "</div>";
-
-        echo "<div class='guide-buttons'>";
-        echo "<button class='svg-button userLike' data-guide-id='" . $data['guideID'] . "'>";
-        showUserAmount($db, "user_like", $data['guideID']);
-        showHeart();
-        echo "</button>";
-        echo "<button class='svg-button userFavorite' data-guide-id='" . $data['guideID'] . "'>";
-        showUserAmount($db, "user_favorite", $data['guideID']);
-        showStar();
-        echo "</button>";
-        echo "<a href='#'>See More Details and Comments</a>";
-        echo "</div>";
-        echo "</div>";
-
-        echo "</div>";
-        echo "</div>";
-    }
-}
-
-
 function showHeart(){
     echo  '<svg class="svg-heart" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19.3 5.71002C18.841 5.24601 18.2943 4.87797 17.6917 4.62731C17.0891 4.37666 16.4426 4.2484 15.79 4.25002C15.1373 4.2484 14.4909 4.37666 13.8883 4.62731C13.2857 4.87797 12.739 5.24601 12.28 5.71002L12 6.00002L11.72 5.72001C10.7917 4.79182 9.53273 4.27037 8.22 4.27037C6.90726 4.27037 5.64829 4.79182 4.72 5.72001C3.80386 6.65466 3.29071 7.91125 3.29071 9.22002C3.29071 10.5288 3.80386 11.7854 4.72 12.72L11.49 19.51C11.6306 19.6505 11.8212 19.7294 12.02 19.7294C12.2187 19.7294 12.4094 19.6505 12.55 19.51L19.32 12.72C20.2365 11.7823 20.7479 10.5221 20.7442 9.21092C20.7405 7.89973 20.2218 6.64248 19.3 5.71002Z" fill="#919191" class="svg-heart-color"></path> </g></svg>';
 }
@@ -202,6 +203,5 @@ function showUserAmount($db, $table, $guideId){
     }
 
     $row = $result->fetch_assoc();
-    $likeCount = $row['like_count'];
-    echo "<p>" . $likeCount . "</p>";
+    return $row['like_count'];
 }

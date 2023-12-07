@@ -18,8 +18,12 @@ function handleDataByButton(keyName){
         }
         let button = $(this);
         let myUrl;
-        if (keyName === "userLike") myUrl = "../php/handleUserLikes.php";
-        else if (keyName === "userFavorite") myUrl = "../php/handleUserFavorites.php";
+        if (keyName === "userLike"){
+            myUrl = "../php/handleUserLikes.php";
+        }
+        else if (keyName === "userFavorite"){
+            myUrl = "../php/handleUserFavorites.php";
+        }
         else return;
         let guideId = $(this).data('guide-id');
         let field = keyName + '_guideId';
@@ -29,13 +33,33 @@ function handleDataByButton(keyName){
             data: { [field]: guideId },
             success: function(response) {
                 button.toggleClass('added');
-                if (button.hasClass('added')) alert('点赞成功！');
-                else alert('取消点赞！');
+                // if (button.hasClass('added')) alert('点赞成功！');
+                // else alert('取消点赞！');
+                let guideId = button.data('guide-id');
+                updateCount(keyName, guideId);
             },
             error: function() {
-                alert('点赞失败！');
+                alert('failed to clicked button');
             }
         });
+    });
+}
+
+function updateCount(keyName, guideId) {
+    let countUrl;
+    if (keyName === "userLike"){
+        countUrl = "../php/getLikeCount.php";
+    }
+    else if (keyName === "userFavorite"){
+        countUrl = "../php/getFavoriteCount.php";
+    }
+    $.ajax({
+        url: countUrl,
+        type: 'GET',
+        data: { guideId: guideId },
+        success: function(count) {
+            $('p.count[data-' + keyName + '-guide-id="' + guideId + '"]').text(count);
+        }
     });
 }
 
