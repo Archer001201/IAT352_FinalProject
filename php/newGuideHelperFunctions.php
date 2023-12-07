@@ -34,7 +34,6 @@ function createGuideData($db){
 }
 
 function updateSession(){
-//    session_start();
     if (isset($_GET["bestWeapon"])) $_SESSION['bestWeapon'] = $_GET['bestWeapon'];
     if (isset($_GET["replacementWeapon"])) $_SESSION['replacementWeapon'] = $_GET['replacementWeapon'];
     if (isset($_GET["artifacts_1"])) $_SESSION['artifacts_1'] = $_GET['artifacts_1'];

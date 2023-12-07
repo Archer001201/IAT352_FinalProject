@@ -38,6 +38,11 @@ $guides = queryForeignKey($db,"guides","characterID",$characterID);
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
 showAddGuideButton($characterID);
+
+formStart("characterDetail.php", "GET");
+showDropdown("guideSorting", "Sorting", ["Likes: Low to High", "Likes: High to Low", "Favorites: Low to High", "Favorites: High to Low"]);
+formEnd();
+
 echo "<div class='guidesContainer'>";
 echo "<h2>Guides for " . $character['name'] . "</h2>";
 showGuideCard($db,$guides);

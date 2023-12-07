@@ -5,7 +5,7 @@
  * $displayName -> 下拉菜单显示的名字
  * $options -> 存储下拉菜单选项的array
  */
-function showDropdown($label, $displayName, $options){
+function showDropdownWithAssoc($label, $displayName, $options){
     echo "<label for='" . $label . "'>";
     echo "<h3>" . $displayName . "</h3>";
     echo "<select name='" . $label . "' id='" . $label . "'>";
@@ -16,6 +16,21 @@ function showDropdown($label, $displayName, $options){
         else
             $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt['id']) ? 'selected' : '';
         echo "<option value='" . $opt['id'] . "' " . $selected . ">" . $opt['name'] . "</option>";
+    }
+    echo "</select></label>";
+}
+
+function showDropdown($label, $displayName, $options){
+    echo "<label for='" . $label . "'>";
+    echo "<h3>" . $displayName . "</h3>";
+    echo "<select name='" . $label . "' id='" . $label . "'>";
+    for ($i=0; $i < count($options); $i++){
+        $opt = $options[$i];
+        if ($i == 0 && !isset($_SESSION[$label]))
+            $selected = 'selected';
+        else
+            $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt) ? 'selected' : '';
+        echo "<option value='" . $opt . "' " . $selected . ">" . $opt . "</option>";
     }
     echo "</select></label>";
 }

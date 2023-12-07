@@ -57,7 +57,6 @@ function showGuideCard($db, $guides){
         echo "<h2>" . $data['guideTitle'] . "</h2>";
         echo "<div class='horizontal-layout'>";
 
-
         echo "<div class='equipment'>";
         echo "<div class='vertical-layout'>";
         echo "<div><p><strong>Best Weapon</strong></p>";
@@ -73,7 +72,6 @@ function showGuideCard($db, $guides){
         echo "<div><p><strong>Replacement Weapon</strong></p>";
         echo "<img src='../res/WeaponImages/" . $replacementWeapon['image'] . "' width=100>";
         echo "</div>";
-
 
         echo "<div><p><strong>Artifacts (2pcs)</strong></p>";
         echo "<img src='../res/ArtifactImages/" . $artifact_2['image'] . "' width=75>";
@@ -91,9 +89,11 @@ function showGuideCard($db, $guides){
 
         echo "<div class='guide-buttons'>";
         echo "<button class='svg-button userLike' data-guide-id='" . $data['guideID'] . "'>";
+        showUserAmount($db, "user_like", $data['guideID']);
         showHeart();
         echo "</button>";
         echo "<button class='svg-button userFavorite' data-guide-id='" . $data['guideID'] . "'>";
+        showUserAmount($db, "user_favorite", $data['guideID']);
         showStar();
         echo "</button>";
         echo "<a href='#'>See More Details and Comments</a>";
@@ -105,6 +105,26 @@ function showGuideCard($db, $guides){
     }
 }
 
-//function handleUserLikeFavoriteTable($db, $table, $postKey){
-//
-//}
+function showUserAmount($db, $table, $guideId){
+    $query = "SELECT COUNT(*) AS like_count FROM " . $table . " WHERE guideID = ?";
+    $stmt = $db->prepare($query);
+    if ($stmt === false) {
+        echo "Prepare error: " . $db->error;
+        return null;
+    }
+    $stmt->bind_param('i', $guideId);
+    if (!$stmt->execute()) {
+        echo "Execute error: " . $stmt->error;
+        return null;
+    }
+    $result = $stmt->get_result();
+    if ($result === false) {
+        echo "Query error: " . $db->error;
+        return null;
+    }
+
+    $row = $result->fetch_assoc();
+    $likeCount = $row['like_count'];
+    echo "<p>" . $likeCount . "</p>";
+}
+
