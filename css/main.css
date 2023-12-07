@@ -60,6 +60,14 @@ a{
     cursor: pointer;
 }
 
+.added .svg-heart-color{
+    fill: #f54040;
+}
+
+.added .svg-star-color{
+    fill: #d0d06d;
+}
+
 /*Font Settings*/
 @font-face {
     font-family: 'playfair-display';

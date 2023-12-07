@@ -11,6 +11,7 @@ function createGuideData($db){
         $artifacts_1 = $_REQUEST['artifacts_1'];
         $artifacts_2 = $_REQUEST['artifacts_2'];
         $description = $_REQUEST['description'];
+
         $insertStr = "INSERT INTO guides (userID, characterID, guideTitle, guideDescription, bestWeaponID, replacementWeaponID, artifactID_1, artifactID_2) VALUES (?,?,?,?,?,?,?,?)";
         $stmt = $db->prepare($insertStr);
         if (!$stmt) {

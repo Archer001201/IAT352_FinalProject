@@ -16,6 +16,9 @@ $(document).ready(function() {
     filterDataByRadio("weapon_weaponType");
 
     handleDataByButton("userLike");
+    handleDataFromBackEnd("userLike");
+    handleDataByButton("userFavorite");
+    handleDataFromBackEnd("userFavorite");
 });
 
 /*
@@ -76,24 +79,48 @@ function filterDataByRadio(keyName) {
 }
 
 function handleDataByButton(keyName){
-    $('#' + keyName).click(function() {
+    $('.' + keyName).click(function() {
         if (!isLogin) {
             window.location.href = '../php/sign-in.php?loginRequest=' + keyName;
             return;
         }
+        let button = $(this);
+        let myUrl;
+        if (keyName === "userLike") myUrl = "../php/handleUserLikes.php";
+        else if (keyName === "userFavorite") myUrl = "../php/handleUserFavorites.php";
+        else return;
         let guideId = $(this).data('guide-id');
         let field = keyName + '_guideId';
         $.ajax({
             type: 'POST',
-            url: 'characterDetail.php',
+            url: myUrl,
             data: { [field]: guideId },
             success: function(response) {
-                alert('点赞成功！');
+                button.toggleClass('added');
+                if (button.hasClass('added')) alert('点赞成功！');
+                else alert('取消点赞！');
             },
             error: function() {
                 alert('点赞失败！');
             }
         });
+    });
+}
+
+function handleDataFromBackEnd(keyName){
+    let myUrl;
+    if (keyName === "userLike") myUrl = "getUserLikes.php";
+    else if (keyName === "userFavorite") myUrl = "getUserFavorites.php";
+    else return;
+    $.ajax({
+        type: 'GET',
+        url: myUrl,
+        success: function(response) {
+            let guides = JSON.parse(response);
+            guides.forEach(function(guideId) {
+                $('button.' + keyName + '[data-guide-id="' + guideId + '"]').addClass('added');
+            });
+        }
     });
 }
 

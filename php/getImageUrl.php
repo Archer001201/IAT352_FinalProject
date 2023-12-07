@@ -70,3 +70,5 @@ if (isset($_GET['artifacts_2'])) {
         echo "No image found";
     }
 }
+
+$db->close();
