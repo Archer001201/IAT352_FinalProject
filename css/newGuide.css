@@ -20,7 +20,7 @@ form div{
 }
 
 .titleInput{
-    font-size: x-large;
+    font-size: larger;
     font-weight: bold;
 }
 
@@ -47,4 +47,8 @@ form div{
     /*border: 1px solid red;*/
     display: flex;
     justify-content: space-between;
+}
+
+h2{
+    margin-top: 0;
 }

@@ -45,7 +45,7 @@ createGuideData($db);
 
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
-echo "<h1>New Game Guide</h1>";
+//echo "<h1>New Game Guide</h1>";
 formStart(("newGuide.php"), "post");
 
 echo "<div class='titleInput'>";

@@ -36,7 +36,6 @@ function showInfoCard($table, $name, $image, $id){
  * 启动并更新Session，在ajax运行之前调用以即使更新Session数据
  */
 function updateSession(){
-//    session_start();
     if (isset($_GET["characterRarity"])) $_SESSION['characterRarity'] = $_GET['characterRarity'];
     if (isset($_GET["region"])) $_SESSION['region'] = $_GET['region'];
     if (isset($_GET["elementType"])) $_SESSION['elementType'] = $_GET['elementType'];

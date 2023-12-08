@@ -28,7 +28,12 @@ if ($db->connect_errno) {
 $user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
 echo "<h1>" . $user['userName'] . "'s Posts</h1>";
+formStart("posts.php", "GET");
+showDropdown("post_guideSorting", "Sorting", ["Post Date: Newest", "Post Date: Oldest", "Likes: High to Low", "Likes: Low to High", "Favorites: High to Low", "Favorites: Low to High"]);
+formEnd();
+echo "<div id='guidesContainer'>";
 require ("userPostedGuides.php");
+echo "</div>";
 ?>
 
 </body>

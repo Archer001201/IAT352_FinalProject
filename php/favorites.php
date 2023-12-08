@@ -28,7 +28,12 @@ if ($db->connect_errno) {
 $user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
 echo "<h1>" . $user['userName'] . "'s Favorites</h1>";
+formStart("userFavoritedGuides.php", "GET");
+showDropdown("favorite_guideSorting", "Sorting", ["Favorite Date: Newest", "Favorite Date: Oldest"]);
+formEnd();
+echo "<div id='guidesContainer'>";
 require ("userFavoritedGuides.php");
+echo "</div>";
 ?>
 
 </body>

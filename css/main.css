@@ -4,11 +4,13 @@
 
 body{
     font-family: 'playfair-display', sans-serif;
+    background-color: #F7F3EC;
+    color: #495366;
 }
 
 header{
     height: 50px;
-    background-color: #EAE3CE;
+    background-color: #F0EBE3;
     display: flex;
     justify-content: space-around;
 }
@@ -24,24 +26,20 @@ nav{
     display: flex;
 }
 
-a{
-    color: black;
-}
-
 .nav-button{
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     font-size: 24px;
-    color: #000;
+    color: #495366;
     width: 200px;
     height: 100%;
     transition: all 0.3s ease-in-out;
 }
 
 .nav-button:hover{
-    background-color: #DBD2B9;
+    background-color: #CEBBA5;
 }
 
 .svg-heart{
@@ -72,6 +70,75 @@ a{
 
 .added .svg-star-color{
     fill: #d0d06d;
+}
+
+.box-button{
+    display: flex;
+    text-decoration: none;
+    /*border: 1px solid;*/
+    border-radius: 5px;
+    background-color: #C6A68D;
+    margin: 1rem;
+    padding: 0.5rem;
+    height: fit-content;
+    color: #F0EBE3;
+    transition: all ease-in 0.3s;
+}
+
+.box-button:hover{
+    border-radius: 25px;
+    background-color: #7E6A5A;
+}
+
+.line-button{
+    /*text-decoration: none;*/
+    color: #7E6A5A;
+    transition: all ease-in-out 0.3s;
+}
+
+.line-button:hover{
+    /*text-decoration: underline;*/
+    /*box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);*/
+    color: #495366;
+}
+
+
+
+.tool-bar{
+    display: flex;
+    /*border: 1px solid red;*/
+    width: 75%;
+    margin: 1rem auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tool-bar label{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+select{
+    border: 1px solid #495366;
+    border-radius: 15px;
+    padding: 0 0.5rem;
+}
+
+input[type='submit']{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #F7F3EC;
+    background-image: linear-gradient(to right, #C6A68D 50%, #7E6A5A 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all ease-in-out 0.5s;
+    /*font-size: 20px;*/
+}
+
+input[type='submit']:hover{
+    background-position: left bottom;
 }
 
 /*Font Settings*/

@@ -15,7 +15,9 @@ $(document).ready(function() {
     filterDataByRadio("weaponRarity");
     filterDataByRadio("weapon_weaponType");
 
-    sortingDataByDropdown("guideSorting");
+    sortingDataByDropdown("guideSorting", "characterGuides");
+    sortingDataByDropdown("favorite_guideSorting", "userFavoritedGuides");
+    sortingDataByDropdown("post_guideSorting", "userPostedGuides");
 });
 
 /*
@@ -44,13 +46,14 @@ function updateImageByDropdown(keyName) {
     });
 }
 
-function sortingDataByDropdown(keyName) {
+function sortingDataByDropdown(keyName, page) {
+    let myUrl = "../php/" + page + ".php";
     let inputElement = '#' + keyName;
     $(inputElement).on('change', function (){
         let result = $(this).val();
 
         $.ajax({
-            url: "../php/characterGuides.php",
+            url: myUrl,
             type: 'GET',
             data: {[keyName]: result},
             success: function (response){

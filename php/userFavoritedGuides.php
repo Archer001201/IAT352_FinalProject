@@ -1,5 +1,5 @@
 <script src="../js/jquery-3.6.1.js"></script>
-<!--<script src="../js/like_favorite.js"></script>-->
+<script src="../js/like_favorite.js"></script>
 <?php
 require("guideCardHelperFunctions.php");
 session_start();
@@ -16,13 +16,17 @@ if ($db->connect_errno) {
 
 $user = queryByPrimaryKeyForGuide($db,"users", $_SESSION['valid_user'], "uid");
 
-if (empty($_GET['guideSorting'])){
+if (empty($_GET['favorite_guideSorting'])){
     $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
 }
 else{
-    $guideSorting = $_GET['guideSorting'];
-    if ($guideSorting == 1) $guides = sortingGuideDataByTime($db, "ASC", $user["uid"], "favoriteDate", "userID", "user_favorite");
-    else $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
+    $guideSorting = $_GET['favorite_guideSorting'];
+    if ($guideSorting == 1){
+        $guides = sortingGuideDataByTime($db, "ASC", $user["uid"], "favoriteDate", "userID", "user_favorite");
+    }
+    else{
+        $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
+    }
 }
 $guideData = queryFavoritedGuides($db, $guides);
 

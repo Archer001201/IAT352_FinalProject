@@ -38,11 +38,14 @@ $character = queryById($db,$table, $characterID, "id");
 
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
-showAddGuideButton($characterID);
 
+echo "<div class='tool-bar'>";
 formStart("characterDetail.php", "GET");
 showDropdown("guideSorting", "Sorting", ["Likes: High to Low", "Likes: Low to High", "Favorites: High to Low", "Favorites: Low to High", "Date: Newest", "Date: Oldest"]);
 formEnd();
+showAddGuideButton($characterID);
+echo "</div>";
+
 echo "<div id='guidesContainer'>";
 require ("characterGuides.php");
 echo "</div>";

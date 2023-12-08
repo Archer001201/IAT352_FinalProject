@@ -16,18 +16,18 @@ if ($db->connect_errno) {
 $characterId = (int)$_SESSION['characterId'];
 $character = queryByPrimaryKeyForGuide($db,"characters", $characterId, "id");
 if (empty($_GET['guideSorting'])){
-    $guides = sortingGuideDataByCount($db, "user_like", "DESC", $characterId);
+    $guides = sortingGuideDataByCount($db, "user_like", "DESC", $characterId, "characterID");
 }
 else{
     $guideSorting = $_GET['guideSorting'];
-    if ($guideSorting == 0) $guides = sortingGuideDataByCount($db, "user_like", "DESC", $characterId);
-    else if ($guideSorting == 1) $guides = sortingGuideDataByCount($db, "user_like", "ASC", $characterId);
-    else if ($guideSorting == 2) $guides = sortingGuideDataByCount($db, "user_favorite", "DESC", $characterId);
-    else if ($guideSorting == 3) $guides = sortingGuideDataByCount($db, "user_favorite", "ASC", $characterId);
+    if ($guideSorting == 0) $guides = sortingGuideDataByCount($db, "user_like", "DESC", $characterId, "characterID");
+    else if ($guideSorting == 1) $guides = sortingGuideDataByCount($db, "user_like", "ASC", $characterId, "characterID");
+    else if ($guideSorting == 2) $guides = sortingGuideDataByCount($db, "user_favorite", "DESC", $characterId, "characterID");
+    else if ($guideSorting == 3) $guides = sortingGuideDataByCount($db, "user_favorite", "ASC", $characterId, "characterID");
     else if ($guideSorting == 4) $guides = sortingGuideDataByTime($db, "DESC", $characterId, "postDate", "characterID", "guides");
     else if ($guideSorting == 5) $guides = sortingGuideDataByTime($db, "ASC", $characterId, "postDate", "characterID", "guides");
     else $guides = queryForeignKeyForGuide($db,"guides","characterID",$_SESSION['characterId']);
 }
 
-echo "<h2>Guides for " . $character['name'] . "</h2>";
+echo "<h1>Guides for " . $character['name'] . "</h1>";
 showGuideCard($db,$guides);

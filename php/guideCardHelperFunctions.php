@@ -57,7 +57,7 @@ function guideCardTemp($db, $data, $bestWeapon, $replacementWeapon, $artifact_1,
         . showUserAmount($db, "user_favorite", $data['guideID']) . "</p>";
     showStar();
     echo "</button>";
-    echo "<a href='guideDetail.php?guideID=" . $data['guideID'] . "'>See More Details and Comments</a>";
+    echo "<a class='line-button' href='guideDetail.php?guideID=" . $data['guideID'] . "'>See More Details and Comments</a>";
     echo "</div>";
     echo "</div>";
 
@@ -155,7 +155,7 @@ function queryForeignKeyForGuide($db, $table, $condition ,$foreignKey){
     return $allRows;
 }
 
-function sortingGuideDataByCount($db, $table, $order, $id){
+function sortingGuideDataByCount($db, $table, $order, $id, $condition){
     $query = "SELECT g.*, COALESCE(i.count, 0) AS count ";
     $query .= "FROM guides g ";
     $query .= "LEFT JOIN (";
@@ -163,8 +163,8 @@ function sortingGuideDataByCount($db, $table, $order, $id){
     $query .= "FROM " . $table;
     $query .= " GROUP BY guideID) ";
     $query .= "i ON g.guideID = i.guideID ";
-    $query .= "WHERE g.characterID = " . $id . " ORDER BY i.count " . $order;
-
+    $query .= "WHERE g." . $condition . " = " . $id . " ORDER BY i.count " . $order;
+//    echo $query;
     $result = $db->query($query);
     if ($result === false) {
         echo "Query error: " . $db->error;

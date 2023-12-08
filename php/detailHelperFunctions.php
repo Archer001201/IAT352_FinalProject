@@ -32,7 +32,7 @@ function showBasicArtifactInfo($res){
 }
 
 function showAddGuideButton($characterID){
-    echo "<a href='newGuide.php'>Add New Guide</a>";
+    echo "<a class='box-button' href='newGuide.php'>Add New Guide</a>";
     $_SESSION['characterID'] = $characterID;
 }
 
