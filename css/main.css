@@ -141,6 +141,11 @@ input[type='submit']:hover{
     background-position: left bottom;
 }
 
+input[type='text'], textarea{
+    background-color: #FFFBF5;
+    border: 1px solid #495366;
+}
+
 /*Font Settings*/
 @font-face {
     font-family: 'playfair-display';

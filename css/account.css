@@ -7,7 +7,7 @@
     background-color: #F0EBE3;
     position: fixed;
     /*transform: translateX(-50%);*/
-    transform: translate(-45%, 37%);
+    transform: translate(10%, 37%);
 }
 
 .account-nav a {
@@ -45,4 +45,15 @@
 
 h1{
     text-align: center;
+}
+
+.guideCard{
+    /*border: 1px solid red;*/
+    transform: translateX(10%);
+}
+
+label{
+    /*border: 1px solid red;*/
+    width: 500px;
+    transform: translateX(21%);
 }
