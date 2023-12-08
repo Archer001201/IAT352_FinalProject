@@ -26,11 +26,7 @@ function showDropdown($label, $displayName, $options){
     echo "<select name='" . $label . "' id='" . $label . "'>";
     for ($i=0; $i < count($options); $i++){
         $opt = $options[$i];
-        if ($i == 0 && !isset($_SESSION[$label]))
-            $selected = 'selected';
-        else
-            $selected = (isset($_SESSION[$label]) && $_SESSION[$label] == $opt) ? 'selected' : '';
-        echo "<option value='" . $i . "' " . $selected . ">" . $opt . "</option>";
+        echo "<option value='" . $i . "'>" . $opt . "</option>";
     }
     echo "</select></label>";
 }

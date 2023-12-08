@@ -1,11 +1,11 @@
 <?php
-function queryById($db, $table, $id){
+function queryById($db, $table, $id, $key){
     if (!is_numeric($id)) {
         echo "Invalid ID";
         return null;
     }
 
-    $stmt = $db->prepare('SELECT * FROM ' . $table . ' WHERE id = ?');
+    $stmt = $db->prepare('SELECT * FROM ' . $table . ' WHERE ' . $key . ' = ?');
     if ($stmt === false) {
         echo "Prepare error: " . $db->error;
         return null;

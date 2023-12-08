@@ -29,7 +29,7 @@ else {
     exit();
 }
 $table = "weapons";
-$res = queryById($db,$table, $id);
+$res = queryById($db,$table, $id, "id");
 
 echo "<div class='mainContainer'>";
 showBasicWeaponInfo($res);

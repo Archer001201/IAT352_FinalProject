@@ -37,7 +37,7 @@ if ($db->connect_errno) {
     echo "Database connection error: " . $db->connect_error;
     exit();
 }
-$character = queryById($db,"characters", $characterID);
+$character = queryById($db,"characters", $characterID, "id");
 $allWeaponsByWeaponType = queryForeignKey($db,"weapons","weapon_weaponType", $character['character_weaponType']);
 $allArtifacts = queryAllFromTable($db, "artifacts");
 

@@ -34,14 +34,14 @@ else {
     exit();
 }
 $table = "characters";
-$character = queryById($db,$table, $characterID);
+$character = queryById($db,$table, $characterID, "id");
 
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
 showAddGuideButton($characterID);
 
 formStart("characterDetail.php", "GET");
-showDropdown("guideSorting", "Sorting", ["Likes: High to Low", "Likes: Low to High", "Favorites: High to Low", "Favorites: Low to High"]);
+showDropdown("guideSorting", "Sorting", ["Likes: High to Low", "Likes: Low to High", "Favorites: High to Low", "Favorites: Low to High", "Date: Newest", "Date: Oldest"]);
 formEnd();
 echo "<div id='guidesContainer'>";
 require ("characterGuides.php");

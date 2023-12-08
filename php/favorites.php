@@ -1,18 +1,20 @@
 <html lang="en">
 <head>
-    <title>Characters</title>
+    <title>Artifacts</title>
     <link href="../css/normalize.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/detail.css" rel="stylesheet">
+    <link href="../css/newGuide.css" rel="stylesheet">
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script src="../js/ajax.js"></script>
 </head>
 <body>
 
 <?php
-require ("header.php");
+require("header.php");
 require("loginHelperFunctions.php");
-require("detailHelperFunctions.php");
 
-
+redirect_to_if("sign-in.php", empty($_SESSION['valid_user']), "account");
 $dbserver = "localhost";
 $dbuser = "root";
 $dbpass = "";
@@ -23,20 +25,10 @@ if ($db->connect_errno) {
     exit();
 }
 
-if (!empty($_GET['id'])) $id = $_GET['id'];
-else {
-    $db->close();
-    exit();
-}
-$table = "artifacts";
-$res = queryById($db,$table, $id, "id");
+$user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
-echo "<div class='mainContainer'>";
-showBasicArtifactInfo($res);
-
-echo "</div>";
-
-$db->close();
+echo "<h1>" . $user['userName'] . "'s Favorites</h1>";
+require ("userFavoritedGuides.php");
 ?>
 
 </body>

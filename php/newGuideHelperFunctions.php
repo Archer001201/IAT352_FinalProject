@@ -41,8 +41,8 @@ function updateSession(){
 }
 
 function showImageByQueryId($db, $table, $name, $list){
-    if(isset($_SESSION[$name])) $item = queryById($db, $table, $_SESSION[$name]);
-    else $item = queryById($db, $table, $list[0]['id']);
+    if(isset($_SESSION[$name])) $item = queryById($db, $table, $_SESSION[$name], "id");
+    else $item = queryById($db, $table, $list[0]['id'], "id");
 
     if ($table == "weapons")
         echo "<img id='" . $name . "_image' src='../res/WeaponImages/" . $item['image'] . "' width=100>";

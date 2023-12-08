@@ -1,12 +1,5 @@
 <?php
 //require ("sqlHelperFunctions.php");
-function redirect_to_if($url, $condition, $loginRequestPage){
-    if (!$condition) return;
-//    $_SESSION['loginRequestPage'] = $loginRequestPage;
-    header('Location: ' . $url . "?loginRequest=" . $loginRequestPage);
-    exit();
-}
-
 function showBasicCharacterInfo($res){
     echo "<div class='basicInfoContainer'>";
     echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
