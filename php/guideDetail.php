@@ -5,6 +5,9 @@
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/detail.css" rel="stylesheet">
     <link href="../css/gallery.css" rel="stylesheet">
+    <link href="../css/guide.css" rel="stylesheet">
+    <script src="../js/jquery-3.6.1.js"></script>
+    <script src="../js/ajax.js"></script>
 </head>
 <body>
 
@@ -25,7 +28,10 @@ if ($db->connect_errno) {
     exit();
 }
 
-if (!empty($_GET['guideID'])) $guideId = $_GET['guideID'];
+if (!empty($_GET['guideID'])){
+    $guideId = $_GET['guideID'];
+    $_SESSION['guideID'] = $_GET['guideID'];
+}
 else {
     $db->close();
     exit();
@@ -69,6 +75,24 @@ echo "<p>" . $guideData['guideDescription'] . "</p>";
 echo "</div>";
 echo "</div>";
 
+
+echo "<div class='comment-section'>";
+echo "<h2>Comments</h2>";
+echo '<div class="tool-bar">';
+showDropdown("commentSorting", "Sorting", ["Likes: High to Low", "Likes: Low to High", "Date: Newest", "Date: Oldest"]);
+echo '<button class="box-button" id="toggleButton" type="button">Post Comment</button>';
+echo '</div>';
+
+echo "<div id='commentInput' style='display: none'>";
+echo '<textarea id="commentText"></textarea>';
+echo '<button id="submitComment" class="submit-button">Submit</button>';
+echo "</div>";
+
+echo "<div id='comment-container'>";
+require ("comment.php");
+echo "</div>";
+
+echo "</div>";
 
 echo "</div>";
 

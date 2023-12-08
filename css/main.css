@@ -26,6 +26,10 @@ nav{
     display: flex;
 }
 
+a{
+    color: #495366;
+}
+
 .nav-button{
     display: flex;
     justify-content: center;
@@ -42,11 +46,7 @@ nav{
     background-color: #CEBBA5;
 }
 
-.svg-heart{
-    width: 35px;
-}
-
-.svg-star{
+.svg-heart, .svg-star, .svg-thumb{
     width: 35px;
 }
 
@@ -74,8 +74,10 @@ nav{
 
 .box-button{
     display: flex;
+    justify-content: center;
     text-decoration: none;
     /*border: 1px solid;*/
+    border: none;
     border-radius: 5px;
     background-color: #C6A68D;
     margin: 1rem;
@@ -125,7 +127,7 @@ select{
     padding: 0 0.5rem;
 }
 
-input[type='submit']{
+.submit-button{
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
@@ -137,7 +139,7 @@ input[type='submit']{
     /*font-size: 20px;*/
 }
 
-input[type='submit']:hover{
+.submit-button:hover{
     background-position: left bottom;
 }
 

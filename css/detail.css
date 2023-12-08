@@ -80,9 +80,6 @@ h1, h2{
 }
 
 .guide-description{
-    /*border: 1px solid red;*/
-    /*background-color: #33774B;*/
-    /*padding: 1rem;*/
     width: 100%;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -96,56 +93,11 @@ h1, h2{
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    /*width: 50%;*/
-    /*margin: 0 auto;*/
 }
 
 .guide-buttons a{
     display: flex;
     align-items: flex-end;
     padding-bottom: 0.5rem;
-}
-
-.guide-table{
-    display: flex;
-    /*border: 1px solid red;*/
-    justify-content: space-evenly;
-    margin-top: 3rem;
-}
-
-.guide-table h3{
-    text-align: center;
-}
-
-.equipment-table{
-    padding: 1rem;
-    width: 40%;
-    background-color: #F0EBE3;
-    /*border: 1px solid red;*/
-}
-
-.equipment-row{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.equipment-colum{
-    text-align: center;
-    /*border: 1px solid red;*/
-}
-
-.equipment-colum strong{
-    padding: 0.25rem 0.25rem;
-}
-
-.equipment-colum a{
-    background-color: #F7F3EC;
-}
-
-.description-container{
-    /*border: 1px solid red;*/
-    background-color: #F0EBE3;
-    padding: 1rem;
-    width: 50%;
 }
 

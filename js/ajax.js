@@ -18,6 +18,9 @@ $(document).ready(function() {
     sortingDataByDropdown("guideSorting", "characterGuides");
     sortingDataByDropdown("favorite_guideSorting", "userFavoritedGuides");
     sortingDataByDropdown("post_guideSorting", "userPostedGuides");
+
+    loadComments();
+    submitComment();
 });
 
 /*
@@ -97,4 +100,72 @@ function filterDataByRadio(keyName) {
         });
     });
 }
+
+function loadComments() {
+    $.ajax({
+        type: "POST",
+        url: "../php/comment.php",
+        data: { loadComments: true }, // 或者您可以根据需要传递其他数据
+        success: function(response) {
+            $("#comment-container").html(response);
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+function submitComment() {
+    $('#submitComment').click(function() {
+        let comment = $('#commentText').val();
+        $.ajax({
+            type: "POST",
+            url: "../php/comment.php",
+            data: { postComment: comment },
+            success: function(response) {
+                if (isNumeric(response)) {
+                    loadComments();
+                    setTimeout(function() {
+                        let commentSelector = '#commentID_' + response;
+                        $('html, body').animate({
+                            scrollTop: $(commentSelector).offset().top
+                        }, 500);
+                    }, 500);
+                    $('#commentText').val(''); // 清除文本区域的内容
+                    alert('Your comment has been submitted!'); // 显示警告框
+                } else {
+                    $("#comment-container").html(response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+}
+
+function isNumeric(str) {
+    if (typeof str != "string") return false;
+    return !isNaN(str) && !isNaN(parseFloat(str));
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    let button = document.getElementById("toggleButton");
+    let textArea = document.getElementById('commentInput');
+
+    button.addEventListener("click", function() {
+        if (textArea.style.display === "none") {
+            textArea.style.display = "flex";
+            button.textContent = "Cancel";
+        } else {
+            textArea.style.display = "none";
+            button.textContent = "Post Comment";
+        }
+    });
+});
+
+
+
 

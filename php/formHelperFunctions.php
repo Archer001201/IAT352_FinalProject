@@ -74,5 +74,5 @@ function formEnd(){
 }
 
 function showSubmitButton(){
-    echo "<input type='submit' name='submit' value='submit'>";
+    echo "<input class='submit-button' type='submit' name='submit' value='submit'>";
 }
