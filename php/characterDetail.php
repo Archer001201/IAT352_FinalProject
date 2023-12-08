@@ -38,7 +38,7 @@ $character = queryById($db,$table, $characterID, "id");
 
 echo "<div class='mainContainer'>";
 showBasicCharacterInfo($character);
-
+echo "<h1>Guides for " . $character['name'] . "</h1>";
 echo "<div class='tool-bar'>";
 formStart("characterDetail.php", "GET");
 showDropdown("guideSorting", "Sorting", ["Likes: High to Low", "Likes: Low to High", "Favorites: High to Low", "Favorites: Low to High", "Date: Newest", "Date: Oldest"]);

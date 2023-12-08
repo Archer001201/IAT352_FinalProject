@@ -28,11 +28,8 @@ $user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
 echo "<div class='mainContainer'>";
 echo "<h1>" . $user['userName'] . "</h1>";
-echo "<div class='account-nav'>";
-echo "<a href='sign-out.php'>Sign out</a>";
-echo "<a href='favorites.php'>Favorites</a>";
-echo "<a href='posts.php'>Posts</a>";
-echo "</div>";
+require ("account_nav.php");
+header('Location: favorites.php');
 echo "</div>";
 ?>
 

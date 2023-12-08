@@ -28,6 +28,4 @@ else{
     else if ($guideSorting == 5) $guides = sortingGuideDataByTime($db, "ASC", $characterId, "postDate", "characterID", "guides");
     else $guides = queryForeignKeyForGuide($db,"guides","characterID",$_SESSION['characterId']);
 }
-
-echo "<h1>Guides for " . $character['name'] . "</h1>";
 showGuideCard($db,$guides);

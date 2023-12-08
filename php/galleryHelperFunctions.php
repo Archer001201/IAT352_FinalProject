@@ -5,7 +5,7 @@
  * $name -> info card显示的名字
  * $image -> info card图片的url
  */
-function showInfoCard($table, $name, $image, $id){
+function showInfoCard($table, $name, $image, $id, $namePosition){
     $resRoot = null;
     $hrefStr = "#";
     if ($table == "characters"){
@@ -27,8 +27,9 @@ function showInfoCard($table, $name, $image, $id){
         return;
     }
 
+    if ($namePosition == "top") echo "<p>$name</p>";
     echo "<img src='" . $resRoot . $image . "' width=150>";
-    echo "<p>$name</p>";
+    if ($namePosition == "bottom") echo "<p>$name</p>";
     echo "</a>";
 }
 
@@ -117,14 +118,15 @@ function showInfoCards($db, $table){
     }
 
     $res = $stmt->get_result();
-    echo "<div class='cardContainer' id='cardContainer'>";
+
     if ($res === false) {
         echo "Query error: " . $db->error;
         exit();
     }
 
+    echo "<div class='cardContainer' id='cardContainer'>";
     while ($row = $res->fetch_assoc()) {
-        showInfoCard($table, $row['name'], $row['image'], $row['id']);
+        showInfoCard($table, $row['name'], $row['image'], $row['id'], "bottom");
     }
     echo "</div>";
 

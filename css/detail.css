@@ -44,6 +44,7 @@ h1, h2{
 .horizontal-layout{
     display: flex;
     justify-content: space-around;
+    /*align-items: stretch;*/
 }
 
 .vertical-layout{
@@ -54,6 +55,7 @@ h1, h2{
     width: 50%;
     /*border: 1px solid red;*/
 }
+
 
 .vertical-layout div{
     /*border: 1px solid red;*/
@@ -99,9 +101,51 @@ h1, h2{
 }
 
 .guide-buttons a{
-    /*border: 1px solid red;*/
     display: flex;
     align-items: flex-end;
     padding-bottom: 0.5rem;
+}
+
+.guide-table{
+    display: flex;
+    /*border: 1px solid red;*/
+    justify-content: space-evenly;
+    margin-top: 3rem;
+}
+
+.guide-table h3{
+    text-align: center;
+}
+
+.equipment-table{
+    padding: 1rem;
+    width: 40%;
+    background-color: #F0EBE3;
+    /*border: 1px solid red;*/
+}
+
+.equipment-row{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.equipment-colum{
+    text-align: center;
+    /*border: 1px solid red;*/
+}
+
+.equipment-colum strong{
+    padding: 0.25rem 0.25rem;
+}
+
+.equipment-colum a{
+    background-color: #F7F3EC;
+}
+
+.description-container{
+    /*border: 1px solid red;*/
+    background-color: #F0EBE3;
+    padding: 1rem;
+    width: 50%;
 }
 

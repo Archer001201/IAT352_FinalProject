@@ -2,9 +2,10 @@
 //require ("sqlHelperFunctions.php");
 function showBasicCharacterInfo($res){
     echo "<div class='basicInfoContainer'>";
-    echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
+//    echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
     echo "<div class='basicInfoImage'><img src='../res/CharacterImages/" . $res['image'] . "' alt='image'></div>";
     echo "<div class='basicInfoDescription'>";
+    echo "<p><strong>Name: " . $res['name'] . "</strong></p>";
     echo "<p> Element: " . $res['elementType'] . "</p>";
     echo "<p> Region: " . $res['region'] . "</p>";
     echo "<p> Rarity: " . $res['characterRarity'] . "</p>";
