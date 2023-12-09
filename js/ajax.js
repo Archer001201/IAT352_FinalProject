@@ -165,6 +165,28 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+//
+// document.addEventListener('DOMContentLoaded', function () {
+//     const talents = document.querySelectorAll('.talent');
+//
+//     talents.forEach(function (talent) {
+//         talent.addEventListener('mouseover', function () {
+//             // 检查是否已经创建了工具提示
+//             let tooltip = this.querySelector('.tooltip');
+//
+//             if (!tooltip) {
+//                 // 第一次鼠标悬停时创建工具提示
+//                 tooltip = document.createElement('div');
+//                 tooltip.className = 'tooltip';
+//                 tooltip.textContent = this.getAttribute('data-tooltip');
+//                 this.appendChild(tooltip);
+//             }
+//         });
+//     });
+// });
+
+
+
 
 
 
