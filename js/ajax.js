@@ -20,11 +20,12 @@ $(document).ready(function() {
     sortingDataByDropdown("post_guideSorting", "userPostedGuides", "guidesContainer");
     sortingDataByDropdown("commentSorting", "comment", "commentContainer");
 
-    loadGuides("characterGuides", "guidesContainer");
-    loadGuides("userFavoritedGuides", "guidesContainer");
-    loadGuides("userPostedGuides", "guidesContainer");
-    loadComments();
+    loadGuides("characterGuides", "guidesContainer", "characterDetail");
+    loadGuides("userFavoritedGuides", "guidesContainer", "favorites");
+    loadGuides("userPostedGuides", "guidesContainer", "posts");
+
     submitComment();
+    loadComments();
 });
 
 /*
@@ -105,19 +106,22 @@ function filterDataByRadio(keyName) {
     });
 }
 
-function loadGuides(myUrl, responseId) {
-    $.ajax({
-        type: "POST",
-        url: "../php/" + myUrl + ".php",
-        data: { loadGuides: true }, // 或者您可以根据需要传递其他数据
-        success: function(response) {
-            $("#" + responseId).html(response);
-            console.log(response);
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
-        }
-    });
+function loadGuides(myUrl, responseId,keyword) {
+    var currentUrl = window.location.href;
+    if (currentUrl.includes(keyword)) {
+        $.ajax({
+            type: "POST",
+            url: "../php/" + myUrl + ".php",
+            data: {loadGuides: true}, // 或者您可以根据需要传递其他数据
+            success: function (response) {
+                $("#" + responseId).html(response);
+                console.log(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
 }
 
 function loadComments() {
@@ -143,16 +147,17 @@ function submitComment() {
             url: "../php/comment.php",
             data: { postComment: comment },
             success: function(response) {
-                if (isNumeric(response)) {
+                if (isNumeric(response.toString().trim())) {
                     loadComments();
                     setTimeout(function() {
                         let commentSelector = '#commentID_' + response;
                         $('html, body').animate({
                             scrollTop: $(commentSelector).offset().top
                         }, 500);
-                    }, 500);
-                    $('#commentText').val(''); // 清除文本区域的内容
-                    alert('Your comment has been submitted!'); // 显示警告框
+                    }, 1000);
+                    $('#commentText').val('');
+                    // loadComments();
+                    alert('Your comment has been submitted!');
                 } else {
                     $("#comment-container").html(response);
                 }
@@ -165,9 +170,9 @@ function submitComment() {
 }
 
 function isNumeric(str) {
-    if (typeof str != "string") return false;
     return !isNaN(str) && !isNaN(parseFloat(str));
 }
+
 
 
 document.addEventListener("DOMContentLoaded", function() {

@@ -8,6 +8,7 @@
     <link href="../css/guide.css" rel="stylesheet">
     <script src="../js/jquery-3.6.1.js"></script>
     <script src="../js/ajax.js"></script>
+    <script src="../js/like_favorite.js"></script>
 </head>
 <body>
 

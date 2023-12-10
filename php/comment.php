@@ -1,6 +1,3 @@
-<script src="../js/jquery-3.6.1.js"></script>
-<script src="../js/like_favorite.js"></script>
-
 <?php
 require ("sqlHelperFunctions.php");
 session_start();
@@ -24,9 +21,9 @@ else {
 if (!empty($_POST['postComment'])) {
     $postComment = $_POST['postComment'];
     $newCommentId = insertComment($db, $postComment, $guideId);
-    echo $newCommentId;
+    echo (int)$newCommentId;
 } else {
-
+    echo '<script src="../js/like_favorite.js"></script>';
     if (empty($_GET['commentSorting'])){
         $commentList = sortingDataByTime($db, "DESC", $guideId, "postDate", "guideID", "comments");
     }
