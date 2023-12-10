@@ -12,7 +12,7 @@
 <?php
 require ("header.php");
 require("loginHelperFunctions.php");
-require("galleryHelperFunctions.php");
+//require("galleryHelperFunctions.php");
 
 
 $dbserver = "localhost";
@@ -28,12 +28,13 @@ if ($db->connect_errno) {
 
 echo "<div class='mainContainer'>";
 echo "<h1 class='pageTitle'>Weapons</h1>";
-updateSession();
+//updateSession();
 formStart('weaponsGallery.php', "get");
 showRadioButton("weaponRarity", "Rarity", ["All", "3-star", "4-star", "5-star"]);
 showRadioButton("weapon_weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
-showInfoCards($db, "weapons");
+//showInfoCards($db, "weapons");
+require ("weapons.php");
 echo "</div>";
 $db->close();
 ?>

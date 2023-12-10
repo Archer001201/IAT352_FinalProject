@@ -12,7 +12,7 @@
 <?php
 require ("header.php");
 require("loginHelperFunctions.php");
-require("galleryHelperFunctions.php");
+
 
 
 $dbserver = "localhost";
@@ -28,7 +28,7 @@ if ($db->connect_errno) {
 
 echo "<div class='mainContainer'>";
 echo "<h1 class='pageTitle'>Characters</h1>";
-updateSession();
+
 formStart('charactersGallery.php', "get");
 showRadioButton("characterRarity", "Rarity", ["All", "4-star", "5-star"]);
 showRadioButton("elementType","Element Type", ["All", "Anemo", "Geo", "Electro", "Dendro", "Hydro", "Pyro", "Cyro"]);
@@ -36,7 +36,7 @@ showRadioButton("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sum
 showRadioButton("character_weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
 
-showInfoCards($db, "characters");
+require ("characters.php");
 
 echo "</div>";
 $db->close();

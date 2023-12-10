@@ -84,9 +84,9 @@ function filterDataByRadio(keyName) {
 
         let myUrl;
         if (currentUrl.includes("charactersGallery.php")) {
-            myUrl = "../php/charactersGallery.php";
+            myUrl = "../php/characters.php";
         } else if (currentUrl.includes("weaponsGallery.php")) {
-            myUrl = "../php/weaponsGallery.php";
+            myUrl = "../php/weapons.php";
         } else {
             console.error("Unable to determine the target URL for AJAX request");
             return;
@@ -97,7 +97,7 @@ function filterDataByRadio(keyName) {
             type: 'GET',
             data: {[keyName]: result},
             success: function (response){
-                $('body').html(response);
+                $('#cardContainer').html(response);
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -182,6 +182,10 @@ document.addEventListener("DOMContentLoaded", function() {
     if (button == null) return;
 
     button.addEventListener("click", function() {
+        if (!isLogin) {
+            window.location.href = '../php/sign-in.php?loginRequest=comment';
+            return;
+        }
         if (textArea.style.display === "none") {
             textArea.style.display = "flex";
             button.textContent = "Cancel";

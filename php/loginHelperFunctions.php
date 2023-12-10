@@ -47,4 +47,10 @@ function showLoginRequestMessage(){
         echo "<p>Please log in to post game guides.</p>";
     if ($loginRequestPage == "userLike")
         echo "<p>Please log in to like game guides.</p>";
+    if ($loginRequestPage == "userFavorite")
+        echo "<p>Please log in to favorite game guides.</p>";
+    if ($loginRequestPage == "commentLike")
+        echo "<p>Please log in to like comment.</p>";
+    if ($loginRequestPage == "comment")
+        echo "<p>Please log in to post comment.</p>";
 }

@@ -8,12 +8,6 @@ session_start();
         <a class="nav-button" href="weaponsGallery.php">Weapons</a>
         <a class="nav-button" href="artifactsGallery.php">Artifacts</a>
         <a class="nav-button"  href="account.php">Account</a>
-<!--        --><?php
-//					if (isset($_SESSION['valid_user']))
-//						echo "<a class=\"nav-button\"  href=\"account.php\">Account</a>";
-//					else
-//						echo "<a class=\"nav-button\" href=\"sign-in.php\">Account</a>";
-//					?>
     </nav>
 </header>
 
