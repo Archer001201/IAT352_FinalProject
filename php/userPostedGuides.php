@@ -2,6 +2,7 @@
 <script src="../js/like_favorite.js"></script>
 <?php
 require("guideCardHelperFunctions.php");
+require ("sqlHelperFunctions.php");
 session_start();
 
 $dbserver = "localhost";
@@ -14,20 +15,20 @@ if ($db->connect_errno) {
     exit();
 }
 
-$user = queryByPrimaryKeyForGuide($db,"users", $_SESSION['valid_user'], "uid");
+$user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
 if (empty($_GET['post_guideSorting'])){
-    $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "postDate", "userID", "guides");
+    $guides = sortingDataByTime($db, "DESC", $user["uid"], "postDate", "userID", "guides");
 }
 else{
     $guideSorting = $_GET['post_guideSorting'];
-    if ($guideSorting == "sorting_0") $guides = sortingGuideDataByTime($db, "DESC", $user['uid'], "postDate", "userID", "guides");
-    else if ($guideSorting == "sorting_1") $guides = sortingGuideDataByTime($db, "ASC", $user['uid'], "postDate", "userID", "guides");
-    else if ($guideSorting == "sorting_2") $guides = sortingGuideDataByCount($db, "user_like", "DESC", $user['uid'], "userID");
-    else if ($guideSorting == "sorting_3") $guides = sortingGuideDataByCount($db, "user_like", "ASC", $user['uid'], "userID");
-    else if ($guideSorting == "sorting_4") $guides = sortingGuideDataByCount($db, "user_favorite", "DESC", $user['uid'], "userID");
-    else if ($guideSorting == "sorting_5") $guides = sortingGuideDataByCount($db, "user_favorite", "ASC", $user['uid'], "userID");
-    else $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "postDate", "userID", "guides");
+    if ($guideSorting == "sorting_0") $guides = sortingDataByTime($db, "DESC", $user['uid'], "postDate", "userID", "guides");
+    else if ($guideSorting == "sorting_1") $guides = sortingDataByTime($db, "ASC", $user['uid'], "postDate", "userID", "guides");
+    else if ($guideSorting == "sorting_2") $guides = sortingDataByCount($db, "guides","user_like", "guideID","DESC", $user['uid'], "userID");
+    else if ($guideSorting == "sorting_3") $guides = sortingDataByCount($db, "guides","user_like", "guideID","ASC", $user['uid'], "userID");
+    else if ($guideSorting == "sorting_4") $guides = sortingDataByCount($db, "guides","user_favorite", "guideID","DESC", $user['uid'], "userID");
+    else if ($guideSorting == "sorting_5") $guides = sortingDataByCount($db, "guides","user_favorite", "guideID","ASC", $user['uid'], "userID");
+    else $guides = sortingDataByTime($db, "DESC", $user["uid"], "postDate", "userID", "guides");
 }
 
 showGuideCard($db,$guides);

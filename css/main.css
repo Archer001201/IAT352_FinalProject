@@ -190,5 +190,18 @@ input[type='text'], textarea{
     opacity: 1;
 }
 
+.hot-review, .guide-brief-description{
+    background-color: #F7F3EC;
+    padding: 0 1rem;
+}
+
+.comment-card-bottom{
+    display: flex;
+}
+
+.comment-info p{
+    font-size: 14px;
+}
+
 
 

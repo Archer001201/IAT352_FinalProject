@@ -20,6 +20,9 @@ $(document).ready(function() {
     sortingDataByDropdown("post_guideSorting", "userPostedGuides", "guidesContainer");
     sortingDataByDropdown("commentSorting", "comment", "commentContainer");
 
+    loadGuides("characterGuides", "guidesContainer");
+    loadGuides("userFavoritedGuides", "guidesContainer");
+    loadGuides("userPostedGuides", "guidesContainer");
     loadComments();
     submitComment();
 });
@@ -102,6 +105,21 @@ function filterDataByRadio(keyName) {
     });
 }
 
+function loadGuides(myUrl, responseId) {
+    $.ajax({
+        type: "POST",
+        url: "../php/" + myUrl + ".php",
+        data: { loadGuides: true }, // 或者您可以根据需要传递其他数据
+        success: function(response) {
+            $("#" + responseId).html(response);
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
 function loadComments() {
     $.ajax({
         type: "POST",
@@ -156,6 +174,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let button = document.getElementById("toggleButton");
     let textArea = document.getElementById('commentInput');
 
+    if (button == null) return;
+
     button.addEventListener("click", function() {
         if (textArea.style.display === "none") {
             textArea.style.display = "flex";
@@ -166,25 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
-//
-// document.addEventListener('DOMContentLoaded', function () {
-//     const talents = document.querySelectorAll('.talent');
-//
-//     talents.forEach(function (talent) {
-//         talent.addEventListener('mouseover', function () {
-//             // 检查是否已经创建了工具提示
-//             let tooltip = this.querySelector('.tooltip');
-//
-//             if (!tooltip) {
-//                 // 第一次鼠标悬停时创建工具提示
-//                 tooltip = document.createElement('div');
-//                 tooltip.className = 'tooltip';
-//                 tooltip.textContent = this.getAttribute('data-tooltip');
-//                 this.appendChild(tooltip);
-//             }
-//         });
-//     });
-// });
+
 
 
 

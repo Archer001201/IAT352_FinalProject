@@ -127,4 +127,26 @@ function sortingDataByTime($db, $order, $id, $time, $key, $table){
     return $allRows;
 }
 
+function showUserAmount($db, $table, $guideId, $condition){
+    $query = "SELECT COUNT(*) AS count FROM " . $table . " WHERE " . $condition . " = ?";
+    $stmt = $db->prepare($query);
+    if ($stmt === false) {
+        echo "Prepare error: " . $db->error;
+        return null;
+    }
+    $stmt->bind_param('i', $guideId);
+    if (!$stmt->execute()) {
+        echo "Execute error: " . $stmt->error;
+        return null;
+    }
+    $result = $stmt->get_result();
+    if ($result === false) {
+        echo "Query error: " . $db->error;
+        return null;
+    }
+
+    $row = $result->fetch_assoc();
+    return $row['count'];
+}
+
 

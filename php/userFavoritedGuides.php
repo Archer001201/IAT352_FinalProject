@@ -2,6 +2,7 @@
 <script src="../js/like_favorite.js"></script>
 <?php
 require("guideCardHelperFunctions.php");
+require ("sqlHelperFunctions.php");
 session_start();
 
 $dbserver = "localhost";
@@ -14,18 +15,18 @@ if ($db->connect_errno) {
     exit();
 }
 
-$user = queryByPrimaryKeyForGuide($db,"users", $_SESSION['valid_user'], "uid");
+$user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
 if (empty($_GET['favorite_guideSorting'])){
-    $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
+    $guides = sortingDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
 }
 else{
     $guideSorting = $_GET['favorite_guideSorting'];
     if ($guideSorting == "sorting_1"){
-        $guides = sortingGuideDataByTime($db, "ASC", $user["uid"], "favoriteDate", "userID", "user_favorite");
+        $guides = sortingDataByTime($db, "ASC", $user["uid"], "favoriteDate", "userID", "user_favorite");
     }
     else{
-        $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
+        $guides = sortingDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
     }
 }
 $guideData = queryFavoritedGuides($db, $guides);
@@ -36,7 +37,7 @@ function queryFavoritedGuides($db, $guides){
     $allRows = [];
 
     foreach ($guides as $guide) {
-        $allRows[] = queryByPrimaryKeyForGuide($db, "guides", $guide['guideID'], "guideID");
+        $allRows[] = queryById($db, "guides", $guide['guideID'], "guideID");
     }
     return $allRows;
 }
