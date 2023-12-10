@@ -17,7 +17,6 @@ if ($db->connect_errno) {
 $characterId = (int)$_SESSION['characterId'];
 $character = queryById($db,"characters", $characterId, "id");
 if (empty($_GET['guideSorting'])){
-//    echo "???";
     $guides = sortingDataByCount($db, "guides", "user_like","guideID","DESC", $characterId, "characterID");
 }
 else{

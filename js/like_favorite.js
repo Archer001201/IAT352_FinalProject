@@ -80,6 +80,10 @@ function handleDataFromBackEnd(keyName){
         type: 'GET',
         url: myUrl,
         success: function(response) {
+            if (!response) {
+                console.log("Response is empty or undefined");
+                return;
+            }
             let guides = JSON.parse(response);
             guides.forEach(function(guideId) {
                 $('button.' + keyName + '[data-guide-id="' + guideId + '"]').addClass('added');
