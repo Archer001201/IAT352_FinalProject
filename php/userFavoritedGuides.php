@@ -21,7 +21,7 @@ if (empty($_GET['favorite_guideSorting'])){
 }
 else{
     $guideSorting = $_GET['favorite_guideSorting'];
-    if ($guideSorting == 1){
+    if ($guideSorting == "sorting_1"){
         $guides = sortingGuideDataByTime($db, "ASC", $user["uid"], "favoriteDate", "userID", "user_favorite");
     }
     else{

@@ -15,9 +15,10 @@ $(document).ready(function() {
     filterDataByRadio("weaponRarity");
     filterDataByRadio("weapon_weaponType");
 
-    sortingDataByDropdown("guideSorting", "characterGuides");
-    sortingDataByDropdown("favorite_guideSorting", "userFavoritedGuides");
-    sortingDataByDropdown("post_guideSorting", "userPostedGuides");
+    sortingDataByDropdown("guideSorting", "characterGuides", "guidesContainer");
+    sortingDataByDropdown("favorite_guideSorting", "userFavoritedGuides", "guidesContainer");
+    sortingDataByDropdown("post_guideSorting", "userPostedGuides", "guidesContainer");
+    sortingDataByDropdown("commentSorting", "comment", "commentContainer");
 
     loadComments();
     submitComment();
@@ -49,7 +50,7 @@ function updateImageByDropdown(keyName) {
     });
 }
 
-function sortingDataByDropdown(keyName, page) {
+function sortingDataByDropdown(keyName, page, responseId) {
     let myUrl = "../php/" + page + ".php";
     let inputElement = '#' + keyName;
     $(inputElement).on('change', function (){
@@ -58,10 +59,10 @@ function sortingDataByDropdown(keyName, page) {
         $.ajax({
             url: myUrl,
             type: 'GET',
-            data: {[keyName]: result},
+            data: {[keyName]: "sorting_" + result},
             success: function (response){
                 console.log(response);
-                $('#guidesContainer').html(response);
+                $('#' + responseId).html(response);
             },
             error: function(xhr, status, error) {
                 console.error(error);

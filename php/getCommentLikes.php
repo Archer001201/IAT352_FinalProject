@@ -11,12 +11,7 @@ if ($db->connect_errno) {
     echo "Database connection error: " . $db->connect_error;
     exit();
 }
-
-$table = "user_favorite";
-$postKey = "userFavorite_guideId";
-
-if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) return;
+if (empty($_SESSION['valid_user'])) exit();
 $uid = $_SESSION['valid_user'];
-$guideId = $_POST[$postKey];
 
-handleData($db, $uid, $table, $guideId, "guideID");
+getData($db, $uid, 'comment_like',"commentID");

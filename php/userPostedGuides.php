@@ -21,12 +21,12 @@ if (empty($_GET['post_guideSorting'])){
 }
 else{
     $guideSorting = $_GET['post_guideSorting'];
-    if ($guideSorting == 0) $guides = sortingGuideDataByTime($db, "DESC", $user['uid'], "postDate", "userID", "guides");
-    else if ($guideSorting == 1) $guides = sortingGuideDataByTime($db, "ASC", $user['uid'], "postDate", "userID", "guides");
-    else if ($guideSorting == 2) $guides = sortingGuideDataByCount($db, "user_like", "DESC", $user['uid'], "userID");
-    else if ($guideSorting == 3) $guides = sortingGuideDataByCount($db, "user_like", "ASC", $user['uid'], "userID");
-    else if ($guideSorting == 4) $guides = sortingGuideDataByCount($db, "user_favorite", "DESC", $user['uid'], "userID");
-    else if ($guideSorting == 5) $guides = sortingGuideDataByCount($db, "user_favorite", "ASC", $user['uid'], "userID");
+    if ($guideSorting == "sorting_0") $guides = sortingGuideDataByTime($db, "DESC", $user['uid'], "postDate", "userID", "guides");
+    else if ($guideSorting == "sorting_1") $guides = sortingGuideDataByTime($db, "ASC", $user['uid'], "postDate", "userID", "guides");
+    else if ($guideSorting == "sorting_2") $guides = sortingGuideDataByCount($db, "user_like", "DESC", $user['uid'], "userID");
+    else if ($guideSorting == "sorting_3") $guides = sortingGuideDataByCount($db, "user_like", "ASC", $user['uid'], "userID");
+    else if ($guideSorting == "sorting_4") $guides = sortingGuideDataByCount($db, "user_favorite", "DESC", $user['uid'], "userID");
+    else if ($guideSorting == "sorting_5") $guides = sortingGuideDataByCount($db, "user_favorite", "ASC", $user['uid'], "userID");
     else $guides = sortingGuideDataByTime($db, "DESC", $user["uid"], "postDate", "userID", "guides");
 }
 

@@ -72,6 +72,10 @@ a{
     fill: #d0d06d;
 }
 
+.added .svg-thumb-color{
+    fill: #d0d06d;
+}
+
 .box-button{
     display: flex;
     justify-content: center;

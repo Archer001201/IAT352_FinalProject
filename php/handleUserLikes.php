@@ -19,4 +19,4 @@ if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) return;
 $uid = $_SESSION['valid_user'];
 $guideId = $_POST[$postKey];
 
-handleData($db, $uid, $table, $guideId);
+handleData($db, $uid, $table, $guideId, "guideID");

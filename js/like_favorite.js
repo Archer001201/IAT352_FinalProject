@@ -7,8 +7,9 @@ $(document).ready(function() {
     handleDataFromBackEnd("userLike");
     handleDataByButton("userFavorite");
     handleDataFromBackEnd("userFavorite");
+    handleDataByButton("commentLike");
+    handleDataFromBackEnd("commentLike");
 });
-
 
 function handleDataByButton(keyName){
     $('.' + keyName).click(function() {
@@ -24,6 +25,9 @@ function handleDataByButton(keyName){
         else if (keyName === "userFavorite"){
             myUrl = "../php/handleUserFavorites.php";
         }
+        else if (keyName === "commentLike"){
+            myUrl = "../php/handleCommentLikes.php";
+        }
         else return;
         let guideId = $(this).data('guide-id');
         let field = keyName + '_guideId';
@@ -33,7 +37,7 @@ function handleDataByButton(keyName){
             data: { [field]: guideId },
             success: function(response) {
                 button.toggleClass('added');
-                // if (button.hasClass('added')) alert('点赞成功！');
+                // alert('点赞成功！');
                 // else alert('取消点赞！');
                 let guideId = button.data('guide-id');
                 updateCount(keyName, guideId);
@@ -53,6 +57,9 @@ function updateCount(keyName, guideId) {
     else if (keyName === "userFavorite"){
         countUrl = "../php/getFavoriteCount.php";
     }
+    else if (keyName === "commentLike"){
+        countUrl = "../php/getCommentLikeCount.php";
+    }
     $.ajax({
         url: countUrl,
         type: 'GET',
@@ -67,6 +74,7 @@ function handleDataFromBackEnd(keyName){
     let myUrl;
     if (keyName === "userLike") myUrl = "getUserLikes.php";
     else if (keyName === "userFavorite") myUrl = "getUserFavorites.php";
+    else if (keyName === "commentLike") myUrl = "getCommentLikes.php";
     else return;
     $.ajax({
         type: 'GET',

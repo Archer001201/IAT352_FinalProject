@@ -12,11 +12,11 @@ if ($db->connect_errno) {
     exit();
 }
 
-$table = "user_favorite";
-$postKey = "userFavorite_guideId";
+$table = "comment_like";
+$postKey = "commentLike_guideId";
 
 if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) return;
 $uid = $_SESSION['valid_user'];
 $guideId = $_POST[$postKey];
 
-handleData($db, $uid, $table, $guideId, "guideID");
+handleData($db, $uid, $table, $guideId, "commentID");

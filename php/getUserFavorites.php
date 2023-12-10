@@ -14,4 +14,4 @@ if ($db->connect_errno) {
 if (empty($_SESSION['valid_user'])) exit();
 $uid = $_SESSION['valid_user'];
 
-getData($db, $uid, 'user_favorite');
+getData($db, $uid, 'user_favorite', "guideID");
