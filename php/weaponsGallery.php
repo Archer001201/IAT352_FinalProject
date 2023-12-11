@@ -12,8 +12,6 @@
 <?php
 require ("header.php");
 require("loginHelperFunctions.php");
-//require("galleryHelperFunctions.php");
-
 
 $dbserver = "localhost";
 $dbuser = "root";
@@ -28,13 +26,15 @@ if ($db->connect_errno) {
 
 echo "<div class='mainContainer'>";
 echo "<h1 class='pageTitle'>Weapons</h1>";
-//updateSession();
+
 formStart('weaponsGallery.php', "get");
 showRadioButton("weaponRarity", "Rarity", ["All", "3-star", "4-star", "5-star"]);
 showRadioButton("weapon_weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
-//showInfoCards($db, "weapons");
+
+echo "<div class='cardContainer' id='card-container'>";
 require ("weapons.php");
+echo "</div>";
 echo "</div>";
 $db->close();
 ?>

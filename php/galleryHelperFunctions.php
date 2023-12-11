@@ -124,11 +124,11 @@ function showInfoCards($db, $table){
         exit();
     }
 
-    echo "<div class='cardContainer' id='cardContainer'>";
+
     while ($row = $res->fetch_assoc()) {
         showInfoCard($table, $row['name'], $row['image'], $row['id'], "bottom");
     }
-    echo "</div>";
+//    echo "</div>";
 
     $res->free_result();
 }

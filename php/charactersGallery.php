@@ -35,9 +35,9 @@ showRadioButton("elementType","Element Type", ["All", "Anemo", "Geo", "Electro",
 showRadioButton("region","Region", ["All", "Mondstadt", "Liyue", "Inazuma", "Sumeru", "Fontaine"]);
 showRadioButton("character_weaponType","Weapon Type", ["All", "Sword", "Claymore", "Polearm", "Bow", "Catalyst"]);
 formEnd();
-
+echo "<div class='cardContainer' id='card-container'>";
 require ("characters.php");
-
+echo "</div>";
 echo "</div>";
 $db->close();
 ?>

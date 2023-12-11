@@ -97,7 +97,7 @@ function filterDataByRadio(keyName) {
             type: 'GET',
             data: {[keyName]: result},
             success: function (response){
-                $('#cardContainer').html(response);
+                $('#card-container').html(response);
             },
             error: function(xhr, status, error) {
                 console.error(error);

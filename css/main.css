@@ -22,6 +22,15 @@ header{
     min-height: 100vh;
  }
 
+#card-container{
+    /*border: 1px solid red;*/
+}
+
+.empty-notice{
+    display: flex;
+    justify-content: center;
+}
+
 nav{
     display: flex;
 }

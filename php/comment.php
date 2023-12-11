@@ -37,8 +37,13 @@ if (!empty($_POST['postComment'])) {
     }
 
     echo "<div id='commentContainer'>";
-    foreach ($commentList as $comment) {
-        showCommentCard($db, $comment);
+    if (count($commentList)>0) {
+        foreach ($commentList as $comment) {
+            showCommentCard($db, $comment);
+        }
+    }
+    else{
+        echo "<p><strong class='empty-notice'>Be the First to Post a Comment!</strong></p>";
     }
     echo "</div>";
 }

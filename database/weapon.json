@@ -1,4 +1,37 @@
-{
-  "skill" : "After casting an Elemental Skill, gain 1 Succession Seed. This effect can be triggered once every 5s. The Succession Seed lasts for 30s. Up to 3 Succession Seeds may exist simultaneously. After using an Elemental Burst, all Succession Seeds are consumed and after 2s, the character regenerates 6 Energy for each seed consumed.",
-  "description" : "A blade custom made for a famed samurai who could strike down a tengu warrior, known for their incredible agility, in midair."
-}
+
+[
+  {
+    "skill" : "After casting an Elemental Skill, gain 1 Succession Seed. This effect can be triggered once every 5s. The Succession Seed lasts for 30s. Up to 3 Succession Seeds may exist simultaneously. After using an Elemental Burst, all Succession Seeds are consumed and after 2s, the character regenerates 6 Energy for each seed consumed.",
+    "description" : "A blade custom made for a famed samurai who could strike down a tengu warrior, known for their incredible agility, in midair."
+  },
+  {
+    "name" : "Amos",
+    "skill" : "Increases Normal Attack and Aimed Shot DMG by 18%. Increases DMG by 12% for every 0.1s that an arrow is in flight. Stacks up to 5 times on each arrow.",
+    "description" : "An extremely ancient bow that has retained its power despite its original master being long gone. It draws power from everyone and everything in the world, and the further away you are from that which your heart desires, the more powerful it is."
+  },
+  {
+    "name" : "Amos",
+    "skill" : "Increased Elemental Mastery by 60. Gain sigils when dealing damage with Elemental Skill or Burst every .2s even when off-field. At 4 sigils, all sigils will be consumed and Elemental Mastery is increased by 100 and ATK increased by 20% for 12s. Once the effect is triggered, you cannot gain Sigils for 20s. The same buffs from the Millennial Movement series does not stack.",
+    "description" : "A bow as lovely as any bard’s lyre, its arrows pierce the heart like a lamenting sigh."
+  },
+  {
+    "name" : "Amos",
+    "skill" : "Increases CRIT DMG by 20%. Hits have a 60% chance to inflict a small AoE attack, dealing 125% Physical ATK DMG. Can only occur once every 4s.",
+    "description" : "A greatbow that symbolizes Dvalin's affiliation with the Anemo Archon. The sound of the bow firing is music to the Anemo Archon's ears. It contains the power of the sky and wind within."
+  },
+  {
+    "name" : "Jade",
+    "skill" : "HP increased by 20%. Additionally, provides an ATK Bonus based on 1.2% of the wielder’s Max HP.",
+    "description" : "A ceremonial sword masterfully carved from pure jade. There almost seems to be an audible sigh in the wind as it is swung."
+  },
+  {
+    "name" : "Moon",
+    "skill" : "Healing Bonus is increased by 10%, Normal ATK DMG is increased by 1% of the Max HP of the character equipping this weapon. For 12s after using an Elemental Burst, Normal Attacks that hit opponents will restore 0.6 Energy. Energy can be restored this way once every 0.1s.",
+    "description" : "A string of lovely jasper from the deep sea. It shines with a pure radiance like that of the moon, and just as ever-distant."
+  },
+  {
+    "name" : "Light",
+    "skill" : "ATK increased by 28% of Energy Recharge over the base 100%. You can gain a maximum bonus of 80% ATK. Gain 30% Energy Recharge for 12s after using an Elemental Burst.",
+    "description" : "A naginata used to ''cut grass.'' Any army that stands before this weapon will probably be likewise cut down..."
+  }
+]

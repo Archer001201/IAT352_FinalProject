@@ -29,9 +29,15 @@ else{
         $guides = sortingDataByTime($db, "DESC", $user["uid"], "favoriteDate", "userID", "user_favorite");
     }
 }
-$guideData = queryFavoritedGuides($db, $guides);
 
-showGuideCard($db,$guideData);
+
+if (count($guides)>0){
+    $guideData = queryFavoritedGuides($db, $guides);
+    showGuideCard($db,$guideData);
+}
+else{
+    echo "<p><strong class='empty-notice'>Explore and Mark Your Favorites!</strong></p>";
+}
 
 function queryFavoritedGuides($db, $guides){
     $allRows = [];

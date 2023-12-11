@@ -31,5 +31,8 @@ else{
     else $guides = sortingDataByTime($db, "DESC", $user["uid"], "postDate", "userID", "guides");
 }
 
-showGuideCard($db,$guides);
+if (count($guides)>0) showGuideCard($db,$guides);
+else{
+    echo "<p><strong class='empty-notice'>You Haven't Shared Any Guides Yet.</strong></p>";
+}
 

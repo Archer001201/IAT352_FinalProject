@@ -26,7 +26,9 @@ if ($db->connect_errno) {
 
 echo "<div class='mainContainer'>";
 echo "<h1 class='pageTitle'>Artifacts</h1>";
+echo "<div class='cardContainer' id='card-container'>";
 showInfoCards($db, "artifacts");
+echo "</div>";
 
 echo "</div>";
 $db->close();
