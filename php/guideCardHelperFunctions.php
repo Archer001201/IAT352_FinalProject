@@ -52,7 +52,7 @@ function guideCardTemp($db, $data, $bestWeapon, $replacementWeapon, $artifact_1,
 
     echo "<div class='hot-review'>";
     echo "<p><strong>Hot Review</strong></p>";
-    if ($hotComment[0] != null) echo '<p><strong>"</strong>' . $hotComment[0]['text'] . '<strong>"</strong></p>';
+    if ($hotComment[0] != null) echo '<p class="hot-review-text"><strong>"</strong>' . $hotComment[0]['text'] . '<strong>"</strong></p>';
     echo "</div>";
 
 

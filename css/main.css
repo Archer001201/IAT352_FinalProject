@@ -204,6 +204,15 @@ input[type='text'], textarea{
     padding: 0 1rem;
 }
 
+.hot-review-text{
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .comment-card-bottom{
     display: flex;
 }
