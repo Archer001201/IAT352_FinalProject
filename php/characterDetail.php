@@ -11,19 +11,11 @@
 
 <?php
 require ("header.php");
-require("loginHelperFunctions.php");
-require("detailHelperFunctions.php");
+require_once ("loginHelperFunctions.php");
+require_once ("detailHelperFunctions.php");
+require_once ("sqlHelperFunctions.php");
 
-
-$dbserver = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "genshinGuides";
-$db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-if ($db->connect_errno) {
-    echo "Database connection error: " . $db->connect_error;
-    exit();
-}
+$db = connectDatabase();
 
 if (!empty($_GET['id'])){
     $characterID = $_GET['id'];

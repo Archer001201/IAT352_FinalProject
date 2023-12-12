@@ -11,18 +11,10 @@
 
 <?php
 require ("header.php");
-require("loginHelperFunctions.php");
+require_once ("loginHelperFunctions.php");
+require_once ("sqlHelperFunctions.php");
 
-$dbserver = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "genshinGuides";
-
-$db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-if ($db->connect_errno) {
-    echo "Database connection error: " . $db->connect_error;
-    exit();
-}
+$db = connectDatabase();
 
 echo "<div class='mainContainer'>";
 echo "<h1 class='pageTitle'>Weapons</h1>";

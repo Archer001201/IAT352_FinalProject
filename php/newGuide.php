@@ -12,9 +12,10 @@
 
 <?php
 require("header.php");
-require("newGuideHelperFunctions.php");
-require("detailHelperFunctions.php");
-require("loginHelperFunctions.php");
+require_once("newGuideHelperFunctions.php");
+require_once("detailHelperFunctions.php");
+require_once("loginHelperFunctions.php");
+require_once ("sqlHelperFunctions.php");
 
 
 updateSession();
@@ -27,16 +28,8 @@ if (empty($_SESSION['characterID'])){
 }
 $characterID = $_SESSION['characterID'];
 
-$dbserver = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "genshinGuides";
+$db = connectDatabase();
 
-$db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-if ($db->connect_errno) {
-    echo "Database connection error: " . $db->connect_error;
-    exit();
-}
 $character = queryById($db,"characters", $characterID, "id");
 $allWeaponsByWeaponType = queryForeignKey($db,"weapons","weapon_weaponType", $character['character_weaponType']);
 $allArtifacts = queryAllFromTable($db, "artifacts");

@@ -11,18 +11,10 @@
 <?php
 require ('header.php');
 include('loginHelperFunctions.php');
+require_once ("sqlHelperFunctions.php");
 
 //require_SSL();
-$dbserver = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "genshinGuides";
-
-$db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-if ($db->connect_errno) {
-    echo "Database connection error: " . $db->connect_error;
-    exit();
-}
+$db = connectDatabase();
 
 if (isset($_POST['submit'])) { // detect form submission
 

@@ -1,4 +1,18 @@
 <?php
+
+function connectDatabase(){
+    $dbserver = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $dbname = "genshinGuides";
+    $db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
+    if ($db->connect_errno) {
+        echo "Database connection error: " . $db->connect_error;
+        exit();
+    }
+    return $db;
+}
+
 function queryById($db, $table, $id, $key){
     if (!is_numeric($id)) {
         echo "Invalid ID";

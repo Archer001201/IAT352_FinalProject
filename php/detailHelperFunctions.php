@@ -1,5 +1,4 @@
 <?php
-//require ("sqlHelperFunctions.php");
 function showBasicCharacterInfo($res){
     echo "<div class='basicInfoContainer'>";
     echo "<div class='basicInfoImage'><img src='../res/CharacterImages/" . $res['image'] . "' alt='image'></div>";
@@ -19,7 +18,6 @@ function showBasicCharacterInfo($res){
 }
 
 function showBasicWeaponInfo($res){
-//    $type = "Sword";
     switch ($res['weapon_weaponType']){
         case 1:
             $type = "Sword";

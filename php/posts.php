@@ -12,18 +12,11 @@
 
 <?php
 require("header.php");
-require("loginHelperFunctions.php");
+require_once ("loginHelperFunctions.php");
+require_once ("sqlHelperFunctions.php");
 
 redirect_to_if("sign-in.php", empty($_SESSION['valid_user']), "account");
-$dbserver = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$dbname = "genshinGuides";
-$db = new mysqli($dbserver, $dbuser, $dbpass, $dbname);
-if ($db->connect_errno) {
-    echo "Database connection error: " . $db->connect_error;
-    exit();
-}
+$db = connectDatabase();
 
 $user = queryById($db,"users", $_SESSION['valid_user'], "uid");
 
