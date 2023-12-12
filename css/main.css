@@ -156,7 +156,8 @@ select{
     background-position: left bottom;
 }
 
-input[type='text'], textarea{
+input[type='text'], textarea,
+input[type='email'], input[type='password']{
     background-color: #FFFBF5;
     border: 1px solid #495366;
 }

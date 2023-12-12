@@ -4,12 +4,12 @@
     <link href="../css/normalize.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/signIn.css" rel="stylesheet">
+    <link href="../css/gallery.css" rel="stylesheet">
 </head>
 <body>
     
 <?php
 require ('header.php');
-include('loginHelperFunctions.php');
 require_once ("sqlHelperFunctions.php");
 //require_SSL();
 
@@ -44,24 +44,25 @@ if (!isset($_POST['submit'])) { // detect form submission
 
 //require('header.php');
 ?>
-    <section>
-	<h2>Sign in </h2>
+
     <?php if(!empty($message)) echo '<p>' . $message . '</p>' ?>
 
     <form action="sign-in.php" method="post">
-    <label for="email">Email Address: <input type="email" name="email" value="<?php $email ?>"></label>
-    <br/>
-    <br/>
-    <label for="password">Password: <input type="password" name="password" value=""></label>
-    <br/>
-    <br/>
-    <input type="submit" name="submit" value="Submit">
-            </form>
-	<p><a href="register.php">Not registered yet? Register here.</a></p>
+        <div>
+            <h2>Sign in </h2>
+            <label for="email">Email Address: <input type="email" name="email" value="<?php $email ?>"></label>
+            <br/>
+            <label for="password">Password: <input type="password" name="password" value=""></label>
+            <br/>
+            <input class="submit-button" type="submit" name="submit" value="Submit">
+            <br/>
+            <a href="register.php">Not registered yet? Register here.</a>
+
 <?php
     showLoginRequestMessage();
 ?>
-    </section>
+        </div>
+    </form>
 <?php
 	require('footer.php');
 ?>

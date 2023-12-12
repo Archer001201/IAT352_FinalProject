@@ -11,7 +11,6 @@
 
 <?php
 require ("header.php");
-require_once ("loginHelperFunctions.php");
 require_once ("sqlHelperFunctions.php");
 
 $db = connectDatabase();

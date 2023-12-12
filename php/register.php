@@ -10,7 +10,6 @@
 <body>
 <?php
 require ('header.php');
-include('loginHelperFunctions.php');
 require_once ("sqlHelperFunctions.php");
 
 //require_SSL();
@@ -51,25 +50,25 @@ else {
 
 //require('header.php');
 ?>
-            <section>
-            <h2>Register for a Classic Models account</h2>
             <form action="register.php" method="post">
-                <label for="name">User Name: <input name="name" type="text" value="<?php $name ?>"></label>
-				<br/>
+                <div>
+                    <h2>Register</h2>
+                    <label for="name">User Name: <input name="name" type="text" value="<?php $name ?>"></label>
+				    <br/>
                 
-                <label for="email">Email Address: <input type="email" name="email" value="<?php $email ?>"></label>
-				<br/>
+                    <label for="email">Email Address: <input type="email" name="email" value="<?php $email ?>"></label>
+				    <br/>
 
-                <label for="password">Password: <input type="password" name="password" value=""></label>
-				<br/>
-                <label for="password2">Password: <input type="password" name="password2" value=""></label>
-				<br/>
+                    <label for="password">Password: <input type="password" name="password" value=""></label>
+				    <br/>
+                    <label for="password2">Password: <input type="password" name="password2" value=""></label>
+				    <br/>
 
 
-                <input type="submit" name="submit" value="Register">
+                    <input class="submit-button" type="submit" name="submit" value="Register">
                 <?php if(!empty($message)) echo '<p class="message">' . $message . '</p>' ?>
+                </div>
             </form>
-            </section>
 <?php
 	require('footer.php');
     $db->close();

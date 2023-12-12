@@ -1,8 +1,22 @@
 <?php
-    require ('header.php');
-    include('loginHelperFunctions.php');
-//    session_start();
+require('header.php');
+session_start();
 
-    session_destroy();
-    $message = "Signed out";
-    redirect_to('index.php');
+$_SESSION = array();
+
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+session_destroy();
+
+$message = "Signed out";
+
+$_SESSION['message'] = $message;
+
+redirect_to('index.php');
+

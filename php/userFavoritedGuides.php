@@ -3,7 +3,6 @@
 <?php
 require_once ("guideCardHelperFunctions.php");
 require_once ("sqlHelperFunctions.php");
-require_once ("sqlHelperFunctions.php");
 session_start();
 
 $db = connectDatabase();

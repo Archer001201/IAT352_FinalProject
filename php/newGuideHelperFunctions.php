@@ -1,6 +1,4 @@
 <?php
-//require ("sqlHelperFunctions.php");
-//require ("formHelperFunctions.php");
 function createGuideData($db){
     if (isset($_REQUEST['submit'])) {
         $uid = $_SESSION['valid_user'];

@@ -14,7 +14,6 @@
 
 <?php
 require ("header.php");
-require_once ("loginHelperFunctions.php");
 require_once ("detailHelperFunctions.php");
 require_once ("galleryHelperFunctions.php");
 require_once ("sqlHelperFunctions.php");

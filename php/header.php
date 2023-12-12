@@ -12,9 +12,10 @@ session_start();
 </header>
 
 <?php
-require_once ("sqlHelperFunctions.php");
+//require_once ("sqlHelperFunctions.php");
 require_once ("formHelperFunctions.php");
-echo "<script>let isLogin = " . (isset($_SESSION['valid_user']) ? 'true' : 'false') . ";</script>";
+require_once ("loginHelperFunctions.php");
+echo "<script>let isLogin = " . (!empty($_SESSION['valid_user']) ? 'true' : 'false') . "</script>";
 
 function redirect_to_if($url, $condition, $loginRequestPage){
     if (!$condition) return;

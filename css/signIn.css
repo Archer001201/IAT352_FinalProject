@@ -1,8 +1,26 @@
-section{
-    width:600px;
-    margin:auto;
+form{
+    width: 100%;
 }
+
+form div{
+    width: 390px;
+    background-color: #F0EBE3;
+    margin: 3rem auto;
+    padding: 2rem;
+    /*border: 1px solid red;*/
+}
+
 label{
     display:flex;
     gap:1rem;
+    justify-content: space-between;
+    /*border: 1px solid red;*/
 }
+
+h2{
+    text-align: center;
+}
+
+/*input{*/
+/*    display: flex;*/
+/*}*/
