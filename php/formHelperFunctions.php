@@ -1,9 +1,10 @@
 <?php
 /*
- * 生成下拉菜单选项
- * $label -> 生成html属性中的label, name, id
- * $displayName -> 下拉菜单显示的名字
- * $options -> 存储下拉菜单选项的array
+ * echo a html structure that shows a dropdown button with options which are associative array
+ * $label -> indicates select name and id
+ * $displayName -> button name
+ * $options -> options which are associative array
+ * (option['id'] will be the value, option['name'] will be displayed)
  */
 function showDropdownWithAssoc($label, $displayName, $options){
     echo "<label for='" . $label . "'>";
@@ -20,6 +21,13 @@ function showDropdownWithAssoc($label, $displayName, $options){
     echo "</select></label>";
 }
 
+/*
+ * echo a html structure that shows a dropdown button with an array options
+ * $label -> indicates select name and id
+ * $displayName -> button name
+ * $options -> array options
+ * (option value will be the index of array options)
+ */
 function showDropdown($label, $displayName, $options){
     echo "<label for='" . $label . "'>";
     echo "<h3>" . $displayName . "</h3>";
@@ -31,6 +39,13 @@ function showDropdown($label, $displayName, $options){
     echo "</select></label>";
 }
 
+/*
+ * echo a html structure that shows a radio button with an array options
+ * $label -> indicates input name and id
+ * $displayName -> button name
+ * $options -> array options
+ * (option value will be the index of array options)
+ */
 function showRadioButton($label, $displayName, $options){
     echo "<div class='radioButtons'><h3>" . $displayName ."</h3>";
     $index = 0;
@@ -45,6 +60,12 @@ function showRadioButton($label, $displayName, $options){
     echo "</div>";
 }
 
+/*
+ * echo a html structure that shows a text input
+ * $label -> indicates input name and id
+ * $displayName -> text input name
+ * $required -> a boolean parameter to determine is this text input mandatory or not
+ */
 function showTextBox($label, $displayName, $required){
     echo "<label for='" . $label . "'>";
     echo "<h2>" . $displayName . "</h2>";
@@ -52,6 +73,11 @@ function showTextBox($label, $displayName, $required){
     echo "</label>";
 }
 
+/*
+ * echo a html structure that shows a text area
+ * $label -> indicates textarea name and id
+ * $displayName -> textarea name
+ */
 function showTextArea($label, $displayName){
     echo "<label for='" . $label . "'>";
     echo "<h2>" . $displayName . "</h2>";
@@ -60,19 +86,22 @@ function showTextArea($label, $displayName){
 }
 
 /*
- * form开始，把form提交的php路径作为参数传递给formStart
+ * form start
  */
 function formStart($filePath, $method){
     echo "<form action='$filePath' method='" . $method . "'>";
 }
 
 /*
- * form结束
+ * form end
  */
 function formEnd(){
     echo "</form>";
 }
 
+/*
+ * submit button
+ */
 function showSubmitButton(){
     echo "<input class='submit-button' type='submit' name='submit' value='submit'>";
 }

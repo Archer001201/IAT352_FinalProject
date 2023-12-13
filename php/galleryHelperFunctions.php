@@ -1,9 +1,10 @@
 <?php
 /*
- * 显示单个info card的<a>，点击之后进入对应的detail页面，在showInfoCard中调用
- * $table -> 数据库中table的名字 ($name和$image通过$table获取)
- * $name -> info card显示的名字
- * $image -> info card图片的url
+ * echo a html structure that shows a single information card of character, weapon, or artifact
+ * $table -> the table name which matches database's table
+ * (actually $table in this function is to handle different url based on the string)
+ * $name -> the name of character, weapon, or artifact (get it from database)
+ * $image -> the image url from database
  */
 function showInfoCard($table, $name, $image, $id, $namePosition){
     $resRoot = null;
@@ -34,7 +35,7 @@ function showInfoCard($table, $name, $image, $id, $namePosition){
 }
 
 /*
- * 启动并更新Session，在ajax运行之前调用以即使更新Session数据
+ * update session data in gallery pages
  */
 function updateSession(){
     if (isset($_GET["characterRarity"])) $_SESSION['characterRarity'] = $_GET['characterRarity'];
@@ -52,10 +53,9 @@ function updateSession(){
 }
 
 /*
- * 通过数据库查询和showInfoCard函数把所有info cards载入到id为cardContainer的<div>中
- * 查询过程将characters和weapons两个table分开进行，避免数据干扰
- * $db -> 数据库名字
- * $table -> 数据库中table的名字
+ * echo a html structure that shows all conditions satisfied information cards by sql query and call showInfoCard function
+ * $db -> the instance of database
+ * $table -> the table name that matches database
  */
 function showInfoCards($db, $table){
     $query_str = 'SELECT * FROM ' . $table;
@@ -128,7 +128,6 @@ function showInfoCards($db, $table){
     while ($row = $res->fetch_assoc()) {
         showInfoCard($table, $row['name'], $row['image'], $row['id'], "bottom");
     }
-//    echo "</div>";
 
     $res->free_result();
 }

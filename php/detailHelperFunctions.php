@@ -1,4 +1,8 @@
 <?php
+/*
+ * echo a html structure that shows a character's basic information
+ * $res -> the character data from database
+ */
 function showBasicCharacterInfo($res){
     echo "<div class='basicInfoContainer'>";
     echo "<div class='basicInfoImage'><img src='../res/CharacterImages/" . $res['image'] . "' alt='image'></div>";
@@ -17,6 +21,10 @@ function showBasicCharacterInfo($res){
     echo "</div>";
 }
 
+/*
+ * echo a html structure that shows a weapon's basic information
+ * $res -> the weapon data from database
+ */
 function showBasicWeaponInfo($res){
     switch ($res['weapon_weaponType']){
         case 1:
@@ -52,6 +60,10 @@ function showBasicWeaponInfo($res){
     echo "</div>";
 }
 
+/*
+ * echo a html structure that shows a artifact's basic information
+ * $res -> the artifact data from database
+ */
 function showBasicArtifactInfo($res){
     echo "<div class='basicInfoContainer'>";
     echo "<div class='basicInfoName'><h1>" . $res['name'] . "</h1></div>";
@@ -65,11 +77,23 @@ function showBasicArtifactInfo($res){
     echo "</div>";
 }
 
+/*
+ * echo a html structure that shows add guide button, and update session data with character id
+ * $characterID -> the character id which this new guide is writing for
+ */
 function showAddGuideButton($characterID){
     echo "<a class='box-button' href='newGuide.php'>Add New Guide</a>";
     $_SESSION['characterID'] = $characterID;
 }
 
+/*
+ * echo a html structure that shows character's skills
+ * skill name will be displayed as the tag, and then moused hovered will show skill description below it
+ * $array -> the skill data from database
+ * (the row skill data from database is formed as json format)
+ * (need to decode the row data into associative array before call this function)
+ * $type -> two types of skill: talents and constellation
+ */
 function showHoverInfo($array, $type){
     if (isset($array[$type]) && is_array($array[$type])) {
         echo "<div class='skills'> <p><strong>" . ucwords($type) . "</strong></p>";
@@ -83,6 +107,12 @@ function showHoverInfo($array, $type){
     }
 }
 
+/*
+ * echo a html structure that shows weapon and artifact's skills
+ * $array -> the skill data from database
+ * (the row skill data from database is formed as json format)
+ * (need to decode the row data into associative array before call this function)
+ */
 function showTextInfo($array){
     if (is_array($array)) {
         foreach ($array as $name => $detail) {
