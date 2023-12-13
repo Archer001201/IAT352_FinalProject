@@ -1,4 +1,8 @@
 <?php
+/*
+ * insert guide data into database
+ * $db -> the instance of database
+ */
 function createGuideData($db){
     if (isset($_REQUEST['submit'])) {
         $uid = $_SESSION['valid_user'];
@@ -31,19 +35,12 @@ function createGuideData($db){
     }
 }
 
+/*
+ * update session
+ */
 function updateSession(){
     if (isset($_GET["bestWeapon"])) $_SESSION['bestWeapon'] = $_GET['bestWeapon'];
     if (isset($_GET["replacementWeapon"])) $_SESSION['replacementWeapon'] = $_GET['replacementWeapon'];
     if (isset($_GET["artifacts_1"])) $_SESSION['artifacts_1'] = $_GET['artifacts_1'];
     if (isset($_GET["artifacts_2"])) $_SESSION['artifacts_2'] = $_GET['artifacts_2'];
-}
-
-function showImageByQueryId($db, $table, $name, $list){
-    if(isset($_SESSION[$name])) $item = queryById($db, $table, $_SESSION[$name], "id");
-    else $item = queryById($db, $table, $list[0]['id'], "id");
-
-    if ($table == "weapons")
-        echo "<img id='" . $name . "_image' src='../res/WeaponImages/" . $item['image'] . "' width=100>";
-    if ($table == "artifacts")
-        echo "<img id='" . $name . "_image' src='../res/ArtifactImages/" . $item['image'] . "' width=100>";
 }

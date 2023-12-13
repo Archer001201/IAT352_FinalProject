@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * get like or favorite list of a specific user
+ * $db -> the instance of database
+ * $uid -> the user id
+ * $table -> table name matched database
+ * $idType -> the type of id (e.g commentID, guideID)
+ */
 function getData($db, $uid, $table, $idType){
     $query = "SELECT * FROM " . $table . " WHERE userID = ?";
     $stmt = $db->prepare($query);
@@ -26,6 +34,13 @@ function getData($db, $uid, $table, $idType){
     echo json_encode($Ids);
 }
 
+/*
+ * to delete or insert data with database
+ * $db -> the instance of database
+ * $table -> the table name matched database
+ * $uid -> user id
+ * $condition -> the query condition
+ */
 function handleData($db, $uid, $table, $id, $condition){
     $query = "SELECT * FROM " . $table . " WHERE " . $condition . " = ? AND userID = ?";
     $stmt = $db->prepare($query);

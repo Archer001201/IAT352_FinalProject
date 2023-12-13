@@ -10,6 +10,6 @@ $postKey = "commentLike_postId";
 
 if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) exit();
 $uid = $_SESSION['valid_user'];
-$guideId = $_POST[$postKey];
+$postId = $_POST[$postKey];
 
-handleData($db, $uid, $table, $guideId, "commentID");
+handleData($db, $uid, $table, $postId, "commentID");

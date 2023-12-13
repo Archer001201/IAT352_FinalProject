@@ -21,7 +21,7 @@ else{
     else if ($guideSorting == "sorting_5") $guides = sortingDataByTime($db, "ASC", $characterId, "postDate", "characterID", "guides");
     else $guides = sortingDataByCount($db, "guides", "user_like","guideID","DESC", $characterId, "characterID");
 }
-if (count($guides)>0) showGuideCard($db,$guides);
+if (count($guides)>0) showGuideCards($db,$guides);
 else{
     echo "<p><strong class='empty-notice'>Be the First to Post a Game Guide!</strong></p>";
 }

@@ -25,12 +25,17 @@ else{
 
 if (count($guides)>0){
     $guideData = queryFavoritedGuides($db, $guides);
-    showGuideCard($db,$guideData);
+    showGuideCards($db,$guideData);
 }
 else{
     echo "<p><strong class='empty-notice'>Explore and Mark Your Favorites!</strong></p>";
 }
 
+/*
+ * query and return favorited guides through an array of guide id
+ * $db -> the instance of database
+ * $guides -> an array of guide id
+ */
 function queryFavoritedGuides($db, $guides){
     $allRows = [];
 
