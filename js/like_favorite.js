@@ -29,18 +29,18 @@ function handleDataByButton(keyName){
             myUrl = "../php/handleCommentLikes.php";
         }
         else return;
-        let guideId = $(this).data('guide-id');
-        let field = keyName + '_guideId';
+        let postId = $(this).data('post-id');
+        let field = keyName + '_postId';
         $.ajax({
             type: 'POST',
             url: myUrl,
-            data: { [field]: guideId },
+            data: { [field]: postId },
             success: function(response) {
                 button.toggleClass('added');
                 // alert('点赞成功！');
                 // else alert('取消点赞！');
-                let guideId = button.data('guide-id');
-                updateCount(keyName, guideId);
+                let postId = button.data('post-id');
+                updateCount(keyName, postId);
             },
             error: function() {
                 alert('failed to clicked button');
@@ -49,7 +49,7 @@ function handleDataByButton(keyName){
     });
 }
 
-function updateCount(keyName, guideId) {
+function updateCount(keyName, postId) {
     let countUrl;
     if (keyName === "userLike"){
         countUrl = "../php/getLikeCount.php";
@@ -63,9 +63,9 @@ function updateCount(keyName, guideId) {
     $.ajax({
         url: countUrl,
         type: 'GET',
-        data: { guideId: guideId },
+        data: { postId: postId },
         success: function(count) {
-            $('p.count[data-' + keyName + '-guide-id="' + guideId + '"]').text(count);
+            $('p.count[data-' + keyName + '-post-id="' + postId + '"]').text(count);
         }
     });
 }
@@ -85,8 +85,8 @@ function handleDataFromBackEnd(keyName){
                 return;
             }
             let guides = JSON.parse(response);
-            guides.forEach(function(guideId) {
-                $('button.' + keyName + '[data-guide-id="' + guideId + '"]').addClass('added');
+            guides.forEach(function(postId) {
+                $('button.' + keyName + '[data-post-id="' + postId + '"]').addClass('added');
             });
         }
     });

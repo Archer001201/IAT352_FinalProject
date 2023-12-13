@@ -58,6 +58,7 @@ function handleData($db, $uid, $table, $id, $condition){
             return;
         }
         $deleteStmt->close();
+        echo "delete";
     } else {
         $insert = "INSERT INTO " . $table . " (userID, $condition) VALUES (?, ?)";
         $stmt = $db->prepare($insert);
@@ -71,5 +72,6 @@ function handleData($db, $uid, $table, $id, $condition){
             return;
         }
         $stmt->close();
+        echo "insert";
     }
 }

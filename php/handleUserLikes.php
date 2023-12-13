@@ -6,9 +6,9 @@ session_start();
 $db = connectDatabase();
 
 $table = "user_like";
-$postKey = "userLike_guideId";
+$postKey = "userLike_postId";
 
-if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) return;
+if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) exit();
 $uid = $_SESSION['valid_user'];
 $guideId = $_POST[$postKey];
 

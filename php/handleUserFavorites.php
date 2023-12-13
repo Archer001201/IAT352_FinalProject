@@ -6,9 +6,10 @@ session_start();
 $db = connectDatabase();
 
 $table = "user_favorite";
-$postKey = "userFavorite_guideId";
+$postKey = "userFavorite_postId";
 
-if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) return;
+if (empty($_SESSION['valid_user']) || empty($_POST[$postKey])) exit();
+
 $uid = $_SESSION['valid_user'];
 $guideId = $_POST[$postKey];
 

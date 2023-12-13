@@ -57,13 +57,13 @@ function guideCardTemp($db, $data, $bestWeapon, $replacementWeapon, $artifact_1,
 
 
     echo "<div class='guide-buttons'>";
-    echo "<button class='svg-button userLike' data-guide-id='" . $data['guideID'] . "'>";
-    echo "<p class='count' data-userLike-guide-id='" . $data['guideID'] . "'>"
+    echo "<button class='svg-button userLike' data-post-id='" . $data['guideID'] . "'>";
+    echo "<p class='count' data-userLike-post-id='" . $data['guideID'] . "'>"
         . showUserAmount($db, "user_like", $data['guideID'], "guideID") . "</p>";
     showHeart();
     echo "</button>";
-    echo "<button class='svg-button userFavorite' data-guide-id='" . $data['guideID'] . "'>";
-    echo "<p class='count' data-userFavorite-guide-id='" . $data['guideID'] . "'>"
+    echo "<button class='svg-button userFavorite' data-post-id='" . $data['guideID'] . "'>";
+    echo "<p class='count' data-userFavorite-post-id='" . $data['guideID'] . "'>"
         . showUserAmount($db, "user_favorite", $data['guideID'], "guideID") . "</p>";
     showStar();
     echo "</button>";
