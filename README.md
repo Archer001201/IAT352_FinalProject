@@ -26,6 +26,7 @@ Utilizes HTML, CSS, and JavaScript for a responsive and interactive user interfa
 2.Real-Time Data Updates:
 
 ![gif_1](https://github.com/user-attachments/assets/00431ca4-a455-4d56-9b65-48d5e41d3992)
+
 Uses **Ajax** to update page content instantly without refreshing, enhancing user experience. When users filter categories, results are **displayed immediately without needing to refresh the page**.
 
 3.Categorized Browsing:
