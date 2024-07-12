@@ -1,8 +1,8 @@
-developed a comprehensive Genshin Impact guide website with an extensive database of characters, weapons, and artifacts. The platform features a full account login system, allowing users to register, upload guides, bookmark, and upvote content, fostering an interactive community. Built using PHP, HTML, CSS, and JavaScript, it serves as a valuable resource for fans.
+Developed a comprehensive Genshin Impact guide full-stack website with an extensive database of characters, weapons, and artifacts. The platform features a full account login system, allowing users to register, upload guides, bookmark, and upvote content, fostering an interactive community. Built using PHP, HTML, CSS, and JavaScript, it serves as a valuable resource for fans.
 
 Project Video: https://www.youtube.com/watch?v=8eJGfjtp28U
 
-Coding Language Used: PHP, HTML, CSS, and JavaScript.
+Coding Language Used: **PHP, HTML, CSS, and JavaScript**.
 
 Initial Stages
 Our project stemmed from a shared love of gaming and a particular fascination with Genshin Impact, a highly popular game. We decided to create a comprehensive guide website, leveraging our interests and technical skills to provide valuable insights and resources for the gaming community.
@@ -24,8 +24,9 @@ Utilizes HTML, CSS, and JavaScript for a responsive and interactive user interfa
 
 
 2.Real-Time Data Updates:
+
 ![gif_1](https://github.com/user-attachments/assets/00431ca4-a455-4d56-9b65-48d5e41d3992)
-Uses Ajax to update page content instantly without refreshing, enhancing user experience. When users filter categories, results are displayed immediately without needing to refresh the page.
+Uses **Ajax** to update page content instantly without refreshing, enhancing user experience. When users filter categories, results are **displayed immediately without needing to refresh the page**.
 
 3.Categorized Browsing:
 
