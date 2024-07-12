@@ -2,15 +2,16 @@ Developed a comprehensive Genshin Impact guide full-stack website with an extens
 
 Project Video: https://www.youtube.com/watch?v=8eJGfjtp28U
 
-Coding Language Used: **PHP, MySQL, HTML, CSS, and JavaScript**.
+Coding Language Used: ***PHP, MySQL, HTML, CSS, and JavaScript***.
 
-Initial Stages
+**Initial Stages**
 Our project stemmed from a shared love of gaming and a particular fascination with Genshin Impact, a highly popular game. We decided to create a comprehensive guide website, leveraging our interests and technical skills to provide valuable insights and resources for the gaming community.
 
-Wireframing
+**Wireframing**
 During the wireframing stage, we first discussed the necessary database schemas for the website. We then collaboratively created an ER diagram, understanding that clearly defining our goals and functionalities was crucial before starting front-end and back-end development. We ensured that each function and its related database components were clearly documented to prevent issues during development. This thorough planning helped us align our objectives and streamline the development process.
 
-ER Diagram
+**ER Diagram**
+
 ![er diagram](https://github.com/user-attachments/assets/766655a5-6d4f-457d-bb58-c27ac424e983)
 
 ![data strucuture](https://github.com/user-attachments/assets/cef3c265-62fa-4848-b02d-7fdef885f4fb)
@@ -43,5 +44,6 @@ Provides secure account creation with encrypted password protection. We recogniz
 Enables users to comment on and write guides for characters and weapons. Users can like and bookmark guides, fostering content engagement and personal curation. This allows users to contribute their own strategies and insights while also supporting and diversifying the guide content by engaging with others' contributions through comments, likes, and bookmarks.
 
 **6.Personalized Dashboard:**
+
 Displays user activity, including posted guides, liked content, and bookmarks, as well as records of other guides that have been bookmarked. This feature allows users to easily manage their interactions and keep track of the content they find valuable.
 
