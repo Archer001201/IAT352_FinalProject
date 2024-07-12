@@ -2,7 +2,7 @@ Developed a comprehensive Genshin Impact guide full-stack website with an extens
 
 Project Video: https://www.youtube.com/watch?v=8eJGfjtp28U
 
-Coding Language Used: **PHP, HTML, CSS, and JavaScript**.
+Coding Language Used: **PHP, MySQL, HTML, CSS, and JavaScript**.
 
 Initial Stages
 Our project stemmed from a shared love of gaming and a particular fascination with Genshin Impact, a highly popular game. We decided to create a comprehensive guide website, leveraging our interests and technical skills to provide valuable insights and resources for the gaming community.
