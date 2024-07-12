@@ -43,4 +43,3 @@ Enables users to comment on and write guides for characters and weapons. Users c
 6.Personalized Dashboard:
 Displays user activity, including posted guides, liked content, and bookmarks, as well as records of other guides that have been bookmarked. This feature allows users to easily manage their interactions and keep track of the content they find valuable.
 
-7.
